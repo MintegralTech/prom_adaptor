@@ -11,6 +11,7 @@ import (
 type Config struct {
     remoteUrl   string
     buffer      int
+    window      int
     jobNames    []string
     whitelist   []string
 
@@ -36,9 +37,27 @@ var (
     ReqLog *logrus.Logger
 )
 
+var Collection *Aggregators
+
+var TsQueue *TimeSeriesQueue
+
 func init() {
     Conf = NewConfig()
     initLog()
+    initQueue()
+    initCollection()
+}
+
+func initCollection() {
+	Collection = NewAggregators(Conf.jobNames)
+}
+
+func initQueue() {
+    buffer := 100000
+    if Conf.buffer >= buffer {
+        buffer = Conf.buffer
+    }
+    TsQueue = NewTimeSeriesQueue(buffer)
 }
 
 func initLog() {
@@ -52,6 +71,7 @@ func NewConfig() *Config {
     config := &Config{}
     v := setViper(defaultConfigPath, defaultConfigName, defaultConfigType)
     config.buffer = v.GetInt("runtime.buffer")
+    config.window = v.GetInt("runtime.window")
     config.remoteUrl = v.GetString("data.remoteUrl")
     config.jobNames = v.GetStringSlice("data.jobNames")
 

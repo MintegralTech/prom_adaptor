@@ -2,9 +2,9 @@ package main
 
 import (
     "net/http"
-    . "prom_adpator/model"
-    "prom_adpator/controller"
-    "github.com/sirupsen/logrus"
+    _ "prom_adaptor/model"
+    "prom_adaptor/controller"
+    _ "github.com/sirupsen/logrus"
     "github.com/gin-gonic/gin"
 )
 
@@ -25,5 +25,5 @@ func main() {
 
 func helloworld(c *gin.Context) {
     c.String(http.StatusOK, "hello world")
-    AccLog.WithFields(logrus.Fields{"request": c.Request.PostForm, "url": c.Request.URL}).Info("access")
+    //AccLog.WithFields(logrus.Fields{"request": c.Request.PostForm, "url": c.Request.URL}).Info("access")
 }

@@ -8,8 +8,9 @@ log:
     reqLogLevel: 4
 
 data:
-    remoteUrl: "http//"
-    jobNames: 
+    remoteUrl : "http//"
+    window    : 60 # second 
+    jobNames  : 
     - "dsp"
     - "dsp_impression"
     - "pioneer"

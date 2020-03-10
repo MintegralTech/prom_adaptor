@@ -10,6 +10,17 @@ type TimeSeriesQueue struct {
     queue chan *prompb.TimeSeries
 }
 
+var TsQueue *TimeSeriesQueue
+
+func InitQueue() {
+    buffer := 100000
+    if Conf.buffer >= buffer {
+        buffer = Conf.buffer
+    }
+    TsQueue = NewTimeSeriesQueue(buffer)
+    go TsQueue.Consumer()
+}
+
 func NewTimeSeriesQueue(buffer int) *TimeSeriesQueue {
     return &TimeSeriesQueue{
         queue : make(chan *prompb.TimeSeries, buffer),
@@ -25,7 +36,7 @@ func (tsq *TimeSeriesQueue) Producer(wreq *prompb.WriteRequest) {
     RunLog.WithFields(logrus.Fields{"queue length": tsq.Length(),"add metrics count:": ct}).Info("runtime")
 }
 
-func (tsq *TimeSeriesQueue) Consumer(){
+func (tsq *TimeSeriesQueue) Consumer() {
     var ts *prompb.TimeSeries
     for {
         select {

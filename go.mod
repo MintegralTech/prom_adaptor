@@ -1,9 +1,8 @@
-module prom_adaptor
+module github.com/MintegralTech/prom_adaptor
 
 go 1.14
 
 require (
-	github.com/MintegralTech/prom_adaptor v0.0.0-20200310052509-22e8cb8a3758
 	github.com/gin-gonic/gin v1.5.0
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/snappy v0.0.1
@@ -15,5 +14,3 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.6.2
 )
-
-replace github.com/MintegralTech/prom_adaptor v0.0.0-20200310052509-22e8cb8a3758 => ../prom_adaptor

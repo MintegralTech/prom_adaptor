@@ -1,9 +1,7 @@
 package model
 
 import (
-    "os"
-    "path/filepath"
-
+    "fmt"
     "github.com/spf13/viper"
     "github.com/sirupsen/logrus"
 )
@@ -37,41 +35,22 @@ var (
     ReqLog *logrus.Logger
 )
 
-var Collection *Aggregators
-
-var TsQueue *TimeSeriesQueue
-
 func init() {
     Conf = NewConfig()
-    initLog()
-    initQueue()
-    initCollection()
-}
-
-func initCollection() {
-	Collection = NewAggregators(Conf.jobNames)
-}
-
-func initQueue() {
-    buffer := 100000
-    if Conf.buffer >= buffer {
-        buffer = Conf.buffer
-    }
-    TsQueue = NewTimeSeriesQueue(buffer)
-}
-
-func initLog() {
-    home, _ := os.Getwd()
-    RunLog = NewLog(filepath.Join(home, Conf.logPath, "runtime"), Conf.runLogLevel, false)
-    AccLog = NewLog(filepath.Join(home, Conf.logPath, "access"), Conf.accLogLevel, false)
-    ReqLog = NewLog(filepath.Join(home, Conf.logPath, "request"), Conf.reqLogLevel, false)
+    fmt.Println(Conf)
+    InitLog()
+    fmt.Println("initlog")
+    InitQueue()
+    fmt.Println("initqueue")
+    InitCollection()
+    fmt.Println("init collection")
 }
 
 func NewConfig() *Config {
     config := &Config{}
     v := setViper(defaultConfigPath, defaultConfigName, defaultConfigType)
     config.buffer = v.GetInt("runtime.buffer")
-    config.window = v.GetInt("runtime.window")
+    config.window = v.GetInt("data.window")
     config.remoteUrl = v.GetString("data.remoteUrl")
     config.jobNames = v.GetStringSlice("data.jobNames")
 

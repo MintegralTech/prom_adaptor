@@ -1,37 +1,37 @@
 package model
 
 import (
-	"fmt"
+    "fmt"
     "errors"
-	"strings"
+    "strings"
 
     "github.com/sirupsen/logrus"
-	"github.com/prometheus/common/model"
-	"github.com/prometheus/prometheus/prompb"
+    "github.com/prometheus/common/model"
+    "github.com/prometheus/prometheus/prompb"
     "github.com/hashicorp/terraform/helper/hashcode"
 )
 
 type block struct {
-	data map[int]*prompb.TimeSeries
+    data map[int]*prompb.TimeSeries
 }
 
 type cache struct {
-	data map[int]*prompb.Sample
+    data map[int]*prompb.Sample
 }
 
 type Aggregator struct {
-	whiteList []string
-	jobName   string
-	timestamp int64
-	prevCache *cache
-	sumCache  *cache
-	pack      *block
-	ready     *block
+    jobName   string
+    timestamp int64
+    prevCache *cache
+    sumCache  *cache
+    pack      *block
+    ready     *block
 }
 
 type Aggregators struct {
-	jobNum      int
-	aggregators map[string]*Aggregator
+    jobNum      int
+    whitelist   map[string]struct{}
+    aggregators map[string]*Aggregator
 }
 
 
@@ -39,28 +39,37 @@ const (
     INSTANCE = "instance"
 )
 
+var Collection *Aggregators
 
-func NewAggregator(jobName string) *Aggregator {
-	return &Aggregator{
-		whiteList: Conf.whitelist,
-		jobName:   jobName,
-		timestamp: 0,
-		prevCache: &cache{data: make(map[int]*prompb.Sample)},
-		sumCache:  &cache{data: make(map[int]*prompb.Sample)},
-		pack:      &block{data: make(map[int]*prompb.TimeSeries)},
-		ready:     &block{data: make(map[int]*prompb.TimeSeries)},
-	}
+func InitCollection() {
+    Collection = NewAggregators()
 }
 
-func NewAggregators(jobNames []string) *Aggregators {
-	aggs := &Aggregators{
-		jobNum:      len(jobNames),
-		aggregators: make(map[string]*Aggregator, len(jobNames)),
-	}
-	for _, jobName := range jobNames {
-		aggs.aggregators[jobName] = NewAggregator(jobName)
-	}
-	return aggs
+func NewAggregator(jobName string) *Aggregator {
+    return &Aggregator{
+        jobName:   jobName,
+        timestamp: 0,
+        prevCache: &cache{data: make(map[int]*prompb.Sample)},
+        sumCache:  &cache{data: make(map[int]*prompb.Sample)},
+        pack:      &block{data: make(map[int]*prompb.TimeSeries)},
+        ready:     &block{data: make(map[int]*prompb.TimeSeries)},
+    }
+}
+
+func NewAggregators() *Aggregators {
+    whitelist := make(map[string]struct{}, len(Conf.whitelist))
+    for _, jobName := range Conf.whitelist {
+        whitelist[jobName] = struct{}{}
+    }
+    aggs := &Aggregators{
+        jobNum:      len(Conf.jobNames)+len(Conf.whitelist),
+        whitelist:   whitelist,
+        aggregators: make(map[string]*Aggregator),
+    }
+    for _, jobName := range Conf.jobNames {
+        aggs.aggregators[jobName] = NewAggregator(jobName)
+    }
+    return aggs
 }
 
 func (collection *Aggregators) updatePrevCache(jobName string, hc int, sample *prompb.Sample) float64 {
@@ -110,6 +119,11 @@ func (collection *Aggregators) pack(jobName string, ts *prompb.TimeSeries, sumVa
     }
 }
 
+func (collection *Aggregators) packNoFilter(jobName string, ts *prompb.TimeSeries) {
+    //todo  
+    ReqLog.WithFields(logrus.Fields{"jobName": jobName}).Info("whitelist")
+}
+
 func (collection *Aggregators) send(jobName string) {
     var wreq *prompb.WriteRequest
     ready := collection.aggregators[jobName].ready
@@ -126,18 +140,23 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
     ReqLog.WithFields(logrus.Fields{"metric": metric}).Info("metrics")
     fields := strings.Split(metric, "_")
     ReqLog.WithFields(logrus.Fields{"fields": fields}).Info("fields")
-    if len(fields) < 2 {
-        errors.New("split metric name error")
+    if len(fields) < 1 {
+        return errors.New("split metric name error")
     }
     jobName := strings.ToLower(fields[0] + "_" + fields[1])
     ReqLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
+    if _, ok := collection.whitelist[jobName]; ok {
+        ReqLog.Info("without filter")
+        collection.packNoFilter(jobName, ts)
+        return nil
+    }
     if _, ok := collection.aggregators[jobName]; !ok {
         ReqLog.Info("no this job")
-        errors.New("no this job")
+        return errors.New("no this job")
     }
     if len(ts.Samples) < 1 {
         ReqLog.Info("no sample")
-        errors.New("no sample")
+        return errors.New("no sample")
     }
     hc := hashcode.String(metric)
     incVal := collection.updatePrevCache(jobName, hc, &ts.Samples[0])

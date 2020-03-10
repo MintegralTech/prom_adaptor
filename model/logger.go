@@ -1,11 +1,20 @@
 package model
 
 import (
+    "os"
     "time"
+    "path/filepath"
 
     rotate "github.com/lestrrat-go/file-rotatelogs"
     "github.com/sirupsen/logrus"
 )
+
+func InitLog() {
+    home, _ := os.Getwd()
+    RunLog = NewLog(filepath.Join(home, Conf.logPath, "runtime"), Conf.runLogLevel, false)
+    AccLog = NewLog(filepath.Join(home, Conf.logPath, "access"), Conf.accLogLevel, false)
+    ReqLog = NewLog(filepath.Join(home, Conf.logPath, "request"), Conf.reqLogLevel, false)
+}
 
 //NewLog generate logger
 func NewLog(file string, level logrus.Level, enableCaller bool) *logrus.Logger {

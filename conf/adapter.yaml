@@ -16,5 +16,5 @@ data:
     - "pioneer"
 
 filter:
-    whilelist:
-    - "temp_metrics"
+    whitelist:
+    - "go_gc"

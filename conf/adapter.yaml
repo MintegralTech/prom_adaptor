@@ -1,0 +1,19 @@
+runtime:
+    buffer: 500000
+log:
+    #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
+    logPath: "log"
+    runLogLevel: 4
+    accLogLevel: 4
+    reqLogLevel: 4
+
+data:
+    remoteUrl: "http//"
+    jobNames: 
+    - "dsp"
+    - "dsp_impression"
+    - "pioneer"
+
+filter:
+    whilelist:
+    - "temp_metrics"

@@ -11,7 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//package main
+package main
+
 //
 //import (
 //	"fmt"
@@ -27,48 +28,42 @@
 //	"github.com/prometheus/prometheus/prompb"
 //)
 //
-//func main() {
-//    var index int64
-//	http.HandleFunc("/receive", func(w http.ResponseWriter, r *http.Request) {
-//        atomic.AddInt64(&index, 1)
-//        idx := atomic.LoadInt64(&index)
-//        fmt.Println("idx: ",idx)
-//		compressed, err := ioutil.ReadAll(r.Body)
-//		if err != nil {
-//			http.Error(w, err.Error(), http.StatusInternalServerError)
-//			return
-//		}
-//
-//		reqBuf, err := snappy.Decode(nil, compressed)
-//		if err != nil {
-//			http.Error(w, err.Error(), http.StatusBadRequest)
-//			return
-//		}
-//
-//		var req prompb.WriteRequest
-//		if err := proto.Unmarshal(reqBuf, &req); err != nil {
-//			http.Error(w, err.Error(), http.StatusBadRequest)
-//			return
-//		}
-//		for _, ts := range req.Timeseries {
-//			fmt.Println(ts)
-//			m := make(model.Metric, len(ts.Labels))
-//			for _, l := range ts.Labels {
-//				m[model.LabelName(l.Name)] = model.LabelValue(l.Value)
-//			}
-//			fmt.Print(idx, m)
-//
-//			for _, s := range ts.Samples {
-//				fmt.Printf("  %f %d\n", s.Value, s.Timestamp)
-//			}
-//		}
-//	})
-//
-//	log.Fatal(http.ListenAndServe(":1234", nil))
-//}
-
-
-
-
-
-
+func main() {
+	//    var index int64
+	//	http.HandleFunc("/receive", func(w http.ResponseWriter, r *http.Request) {
+	//        atomic.AddInt64(&index, 1)
+	//        idx := atomic.LoadInt64(&index)
+	//        fmt.Println("idx: ",idx)
+	//		compressed, err := ioutil.ReadAll(r.Body)
+	//		if err != nil {
+	//			http.Error(w, err.Error(), http.StatusInternalServerError)
+	//			return
+	//		}
+	//
+	//		reqBuf, err := snappy.Decode(nil, compressed)
+	//		if err != nil {
+	//			http.Error(w, err.Error(), http.StatusBadRequest)
+	//			return
+	//		}
+	//
+	//		var req prompb.WriteRequest
+	//		if err := proto.Unmarshal(reqBuf, &req); err != nil {
+	//			http.Error(w, err.Error(), http.StatusBadRequest)
+	//			return
+	//		}
+	//		for _, ts := range req.Timeseries {
+	//			fmt.Println(ts)
+	//			m := make(model.Metric, len(ts.Labels))
+	//			for _, l := range ts.Labels {
+	//				m[model.LabelName(l.Name)] = model.LabelValue(l.Value)
+	//			}
+	//			fmt.Print(idx, m)
+	//
+	//			for _, s := range ts.Samples {
+	//				fmt.Printf("  %f %d\n", s.Value, s.Timestamp)
+	//			}
+	//		}
+	//	})
+	//
+	//	log.Fatal(http.ListenAndServe(":1234", nil))
+}

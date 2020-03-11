@@ -1,13 +1,15 @@
 package model
 
 import (
+    "fmt"
     "github.com/sirupsen/logrus"
     "github.com/prometheus/prometheus/prompb"
 )
 
 
 type TimeSeriesQueue struct {
-    queue chan *prompb.TimeSeries
+    requestQueue chan *prompb.TimeSeries
+    mergeQueue   chan *prompb.TimeSeries
 }
 
 var TsQueue *TimeSeriesQueue
@@ -18,36 +20,57 @@ func InitQueue() {
         buffer = Conf.buffer
     }
     TsQueue = NewTimeSeriesQueue(buffer)
-    go TsQueue.Consumer()
 }
 
 func NewTimeSeriesQueue(buffer int) *TimeSeriesQueue {
     return &TimeSeriesQueue{
-        queue : make(chan *prompb.TimeSeries, buffer),
+        requestQueue: make(chan *prompb.TimeSeries, buffer),
+        mergeQueue:   make(chan *prompb.TimeSeries, buffer),
     }
 }
 
-func (tsq *TimeSeriesQueue) Producer(wreq *prompb.WriteRequest) {
+func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
     ct := 0
     for _, ts := range wreq.Timeseries {
-        tsq.queue <- ts
+        tsq.requestQueue <- ts
         ct++
     }
-    RunLog.WithFields(logrus.Fields{"queue length": tsq.Length(),"add metrics count:": ct}).Info("runtime")
+    RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(),"add metrics count:": ct}).Info("request producer")
 }
 
-func (tsq *TimeSeriesQueue) Consumer() {
+func (tsq *TimeSeriesQueue) RequestConsumer() {
+    var err error
     var ts *prompb.TimeSeries
     for {
         select {
-        case ts = <-tsq.queue:
-            Collection.MergeMetric(ts)
+        case ts = <-tsq.requestQueue:
+            err = Collection.MergeMetric(ts)
+            if err != nil {
+                RunLog.Error("get job name error")
+            }
         }
     }
 }
 
-func (tsq *TimeSeriesQueue) Length() int {
-    return len(tsq.queue)
+func (tsq *TimeSeriesQueue) MergeProducer(ts *prompb.TimeSeries) {
+    tsq.mergeQueue <- ts
 }
 
+func (tsq *TimeSeriesQueue) MergeConsumer() {
+    var ts *prompb.TimeSeries
+    for {
+        select {
+        case ts = <-tsq.mergeQueue:
+            fmt.Println(ts)
+        }
+    }
+}
+
+func (tsq *TimeSeriesQueue) RequestLength() int {
+    return len(tsq.requestQueue)
+}
+
+func (tsq *TimeSeriesQueue) MergeLength() int {
+    return len(tsq.mergeQueue)
+}
 

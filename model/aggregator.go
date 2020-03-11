@@ -2,6 +2,8 @@ package model
 
 import (
     "fmt"
+    "sync"
+    "time"
     "errors"
     "strings"
 
@@ -21,19 +23,17 @@ type cache struct {
 
 type Aggregator struct {
     jobName   string
-    timestamp int64
+    mtx       sync.Mutex
+
     prevCache *cache
     sumCache  *cache
     pack      *block
-    ready     *block
 }
 
 type Aggregators struct {
     jobNum      int
-    whitelist   map[string]struct{}
     aggregators map[string]*Aggregator
 }
-
 
 const (
     INSTANCE = "instance"
@@ -48,23 +48,16 @@ func InitCollection() {
 func NewAggregator(jobName string) *Aggregator {
     return &Aggregator{
         jobName:   jobName,
-        timestamp: 0,
         prevCache: &cache{data: make(map[int]*prompb.Sample)},
         sumCache:  &cache{data: make(map[int]*prompb.Sample)},
         pack:      &block{data: make(map[int]*prompb.TimeSeries)},
-        ready:     &block{data: make(map[int]*prompb.TimeSeries)},
     }
 }
 
 func NewAggregators() *Aggregators {
-    whitelist := make(map[string]struct{}, len(Conf.whitelist))
-    for _, jobName := range Conf.whitelist {
-        whitelist[jobName] = struct{}{}
-    }
     aggs := &Aggregators{
-        jobNum:      len(Conf.jobNames)+len(Conf.whitelist),
-        whitelist:   whitelist,
-        aggregators: make(map[string]*Aggregator),
+        jobNum:      len(Conf.jobNames),
+        aggregators: make(map[string]*Aggregator, len(Conf.jobNames)),
     }
     for _, jobName := range Conf.jobNames {
         aggs.aggregators[jobName] = NewAggregator(jobName)
@@ -100,18 +93,13 @@ func (collection *Aggregators) updateSumCache(jobName string, hc int, sample *pr
     return sumVal
 }
 
-func (collection *Aggregators) pack(jobName string, ts *prompb.TimeSeries, sumVal float64) {
+func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, sumVal float64) {
     noInstTs := DeleteLable(ts, INSTANCE)
     metric := GetMetric(noInstTs)
     hc := hashcode.String(metric)
+    collection.aggregators[jobName].mtx.Lock()
+    defer collection.aggregators[jobName].mtx.Unlock()
     pack := collection.aggregators[jobName].pack
-    curTime := ts.Samples[0].Timestamp - (ts.Samples[0].Timestamp % int64(Conf.window))
-    if curTime != collection.aggregators[jobName].timestamp {
-        collection.aggregators[jobName].ready = collection.aggregators[jobName].pack
-        collection.aggregators[jobName].pack = &block{make(map[int]*prompb.TimeSeries)}
-        go collection.send(jobName)
-        collection.aggregators[jobName].timestamp = curTime
-    }
     if _, ok := pack.data[hc]; !ok {
         pack.data[hc] = noInstTs
     } else {
@@ -119,49 +107,57 @@ func (collection *Aggregators) pack(jobName string, ts *prompb.TimeSeries, sumVa
     }
 }
 
-func (collection *Aggregators) packNoFilter(jobName string, ts *prompb.TimeSeries) {
-    //todo  
-    ReqLog.WithFields(logrus.Fields{"jobName": jobName}).Info("whitelist")
-}
-
-func (collection *Aggregators) send(jobName string) {
-    var wreq *prompb.WriteRequest
-    ready := collection.aggregators[jobName].ready
-    for _, ts := range ready.data {
-        tempTs := *ts
-        wreq.Timeseries = append(wreq.Timeseries, &tempTs)
+func (collection *Aggregators) MonitorPack() {
+    ch := make(chan struct{}, collection.jobNum)
+    for i := 0; i < collection.jobNum; i++ {
+        ch <- struct{}{}
     }
-    collection.aggregators[jobName].ready = nil
-    ReqLog.Info(wreq)
+    jobIndex := 0
+    for {
+        <-ch
+        jobName := Conf.jobNames[jobIndex]
+        window :=  Conf.windows[jobIndex]
+        go func() {
+            t := time.NewTicker(time.Second * time.Duration(window))
+            for {
+                <-t.C
+                collection.aggregators[jobName].mtx.Lock()
+                pack := collection.aggregators[jobName].pack
+                for _, ts := range pack.data {
+                    tempTs := *ts
+                    TsQueue.MergeProducer(&tempTs)
+                }
+                collection.aggregators[jobName].pack = &block{make(map[int]*prompb.TimeSeries)}
+                collection.aggregators[jobName].mtx.Unlock()
+            }
+        }()
+        jobIndex++
+    }
 }
 
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
     metric := GetMetric(ts)
-    ReqLog.WithFields(logrus.Fields{"metric": metric}).Info("metrics")
+    RunLog.WithFields(logrus.Fields{"metric": metric}).Info("metrics")
     fields := strings.Split(metric, "_")
-    ReqLog.WithFields(logrus.Fields{"fields": fields}).Info("fields")
+    RunLog.WithFields(logrus.Fields{"fields": fields}).Info("fields")
     if len(fields) < 1 {
-        return errors.New("split metric name error")
+        return errors.New("get job name error")
     }
     jobName := strings.ToLower(fields[0] + "_" + fields[1])
-    ReqLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
-    if _, ok := collection.whitelist[jobName]; ok {
-        ReqLog.Info("without filter")
-        collection.packNoFilter(jobName, ts)
-        return nil
+    RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
+    if len(ts.Samples) < 1 {
+        return errors.New("no sample")
     }
     if _, ok := collection.aggregators[jobName]; !ok {
-        ReqLog.Info("no this job")
-        return errors.New("no this job")
-    }
-    if len(ts.Samples) < 1 {
-        ReqLog.Info("no sample")
-        return errors.New("no sample")
+        RunLog.Info("without filter")
+        tempTs := *ts
+        TsQueue.MergeProducer(&tempTs)
+        return nil
     }
     hc := hashcode.String(metric)
     incVal := collection.updatePrevCache(jobName, hc, &ts.Samples[0])
     sumVal := collection.updateSumCache(jobName, hc, &ts.Samples[0], incVal)
-    collection.pack(jobName, ts, sumVal)
+    collection.updatePack(jobName, ts, sumVal)
     return nil
 }
 

@@ -1,7 +1,6 @@
 package model
 
 import (
-    "fmt"
     "github.com/spf13/viper"
     "github.com/sirupsen/logrus"
 )
@@ -9,9 +8,8 @@ import (
 type Config struct {
     remoteUrl   string
     buffer      int
-    window      int
+    windows     []int
     jobNames    []string
-    whitelist   []string
 
     //log
     logPath     string
@@ -35,24 +33,17 @@ var (
     ReqLog *logrus.Logger
 )
 
-func init() {
+func InitConfig() {
     Conf = NewConfig()
-    fmt.Println(Conf)
-    InitLog()
-    fmt.Println("initlog")
-    InitQueue()
-    fmt.Println("initqueue")
-    InitCollection()
-    fmt.Println("init collection")
 }
 
 func NewConfig() *Config {
     config := &Config{}
     v := setViper(defaultConfigPath, defaultConfigName, defaultConfigType)
     config.buffer = v.GetInt("runtime.buffer")
-    config.window = v.GetInt("data.window")
+    config.windows = v.GetIntSlice("data.windows")
+    config.jobNames = v.GetStringSlice("data.whitelist")
     config.remoteUrl = v.GetString("data.remoteUrl")
-    config.jobNames = v.GetStringSlice("data.jobNames")
 
     //log
     config.logPath = v.GetString("log.logPath")
@@ -60,7 +51,6 @@ func NewConfig() *Config {
     config.accLogLevel = logrus.Level(v.GetInt("log.accLogLevel"))
     config.reqLogLevel = logrus.Level(v.GetInt("log.reqLogLevel"))
 
-    config.whitelist = v.GetStringSlice("filter.whitelist")
     return config
 }
 

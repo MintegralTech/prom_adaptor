@@ -24,7 +24,6 @@ func Receive(c *gin.Context) error {
     if err := proto.Unmarshal(reqBuf, &req); err != nil {
         return BadRequest()
     }
-    RunLog.WithFields(logrus.Fields{"wr length": len(req.Timeseries)}).Info(req)
-    TsQueue.Producer(&req)
+    TsQueue.RequestProducer(&req)
     return nil
 }

@@ -9,12 +9,11 @@ log:
 
 data:
     remoteUrl : "http//"
-    window    : 60 # second 
-    jobNames  : 
-    - "dsp"
+    whitelist : 
+    - "dsp_dsp"
     - "dsp_impression"
-    - "pioneer"
-
-filter:
-    whitelist:
-    - "go_gc"
+    - "voyager_pioneer"
+    windows   :
+    - 60
+    - 60
+    - 60

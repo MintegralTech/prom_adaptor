@@ -1,7 +1,6 @@
 package model
 
 import (
-    "fmt"
     "github.com/sirupsen/logrus"
     "github.com/prometheus/prometheus/prompb"
 )
@@ -58,10 +57,15 @@ func (tsq *TimeSeriesQueue) MergeProducer(ts *prompb.TimeSeries) {
 
 func (tsq *TimeSeriesQueue) MergeConsumer() {
     var ts *prompb.TimeSeries
+    var tsSlice []*prompb.TimeSeries
     for {
         select {
         case ts = <-tsq.mergeQueue:
-            fmt.Println(ts)
+            tsSlice = append(tsSlice, ts)
+            if len(tsSlice) == Conf.shard || len(tsq.mergeQueue) == 0 {
+                client.Write(tsSlice)
+                tsSlice = []*prompb.TimeSeries{}
+            }
         }
     }
 }

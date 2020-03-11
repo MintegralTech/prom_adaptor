@@ -9,6 +9,12 @@ import (
     "github.com/sirupsen/logrus"
 )
 
+var (
+    RunLog *logrus.Logger
+    AccLog *logrus.Logger
+    ReqLog *logrus.Logger
+)
+
 func InitLog() {
     home, _ := os.Getwd()
     RunLog = NewLog(filepath.Join(home, Conf.logPath, "runtime"), Conf.runLogLevel, false)

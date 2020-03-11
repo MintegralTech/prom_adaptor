@@ -1,5 +1,6 @@
 runtime:
     buffer: 500000
+    shard:  20
 log:
     #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
     logPath: "log"
@@ -8,12 +9,13 @@ log:
     reqLogLevel: 4
 
 data:
-    remoteUrl : "http//"
-    whitelist : 
+    remoteUrl: "http//"
+
+    whitelist: 
     - "dsp_dsp"
     - "dsp_impression"
     - "voyager_pioneer"
-    windows   :
+    windows:
     - 60
     - 60
     - 60

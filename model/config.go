@@ -6,8 +6,9 @@ import (
 )
 
 type Config struct {
-    remoteUrl   string
     buffer      int
+    shard       int
+    remoteUrl   string
     windows     []int
     jobNames    []string
 
@@ -27,12 +28,6 @@ var (
     defaultConfigType = "yaml"
 )
 
-var (
-    RunLog *logrus.Logger
-    AccLog *logrus.Logger
-    ReqLog *logrus.Logger
-)
-
 func InitConfig() {
     Conf = NewConfig()
 }
@@ -40,6 +35,7 @@ func InitConfig() {
 func NewConfig() *Config {
     config := &Config{}
     v := setViper(defaultConfigPath, defaultConfigName, defaultConfigType)
+    config.shard = v.GetInt("runtime.shard")
     config.buffer = v.GetInt("runtime.buffer")
     config.windows = v.GetIntSlice("data.windows")
     config.jobNames = v.GetStringSlice("data.whitelist")

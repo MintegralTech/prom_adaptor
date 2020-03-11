@@ -13,6 +13,8 @@ func init() {
     fmt.Println("initcollection")
     InitQueue()
     fmt.Println("initqueue")
+    InitClient()
+    fmt.Println("initclient")
 
     go TsQueue.RequestConsumer()
     go TsQueue.MergeConsumer()

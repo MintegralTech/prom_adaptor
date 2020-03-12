@@ -29,12 +29,11 @@ func NewTimeSeriesQueue(buffer int) *TimeSeriesQueue {
 }
 
 func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
-    ct := 0
+    RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(),"add metrics count:": len(wreq.Timeseries)}).Info("request producer")
     for _, ts := range wreq.Timeseries {
         tsq.requestQueue <- ts
-        ct++
+        AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts)+GetSample(ts)}).Info("request producer")
     }
-    RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(),"add metrics count:": ct}).Info("request producer")
 }
 
 func (tsq *TimeSeriesQueue) RequestConsumer() {

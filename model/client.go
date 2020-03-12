@@ -7,6 +7,7 @@ import (
     "net/http"
 
     "github.com/golang/snappy"
+    "github.com/sirupsen/logrus"
     "github.com/gogo/protobuf/proto"
     "github.com/prometheus/prometheus/prompb"
 )
@@ -30,6 +31,9 @@ func NewClient(url string) *Client {
 }
 
 func (c *Client) Write(samples []*prompb.TimeSeries) error {
+    for _, ts := range samples {
+        ReqLog.WithFields(logrus.Fields{"metric": GetMetric(ts)+GetSample(ts)}).Info("client send")
+    }
     var buf []byte
     req, _, err := buildWriteRequest(samples, buf)
     httpReq, err := http.NewRequest("POST", c.url, bytes.NewReader(req))

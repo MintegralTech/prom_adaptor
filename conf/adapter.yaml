@@ -15,7 +15,11 @@ data:
     - "dsp_dsp"
     - "dsp_impression"
     - "voyager_pioneer"
+    - "prometheus_tsdb"
+    - "test_counter"
     windows:
     - 60
     - 60
     - 60
+    - 60
+    - 10

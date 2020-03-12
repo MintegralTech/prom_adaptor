@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+    "math"
 	"strings"
 	"sync"
 	"time"
@@ -36,7 +37,8 @@ type Aggregators struct {
 }
 
 const (
-	INSTANCE = "instance"
+	//INSTANCE = "instance"
+	INSTANCE = "ip"
 )
 
 var Collection *Aggregators
@@ -69,7 +71,7 @@ func (collection *Aggregators) updatePrevCache(prevCache *cache, hc int, sample 
 	incVal := sample.Value
 	if prevSample, ok := prevCache.data[hc]; ok {
 		curVal, prevVal := sample.Value, prevSample.Value
-		if curVal > prevVal {
+		if curVal >= prevVal {
 			incVal = curVal - prevVal
 		}
 	}
@@ -135,7 +137,7 @@ func (collection *Aggregators) MonitorPack() {
 
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	metric := GetMetric(ts)
-	RunLog.WithFields(logrus.Fields{"metric": metric}).Info("metrics")
+	RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
 	fields := strings.Split(metric, "_")
 	RunLog.WithFields(logrus.Fields{"fields": fields}).Info("fields")
 	if len(fields) < 1 {
@@ -146,18 +148,26 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	if len(ts.Samples) != 1 {
 		return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
 	}
+    if math.IsNaN(ts.Samples[0].Value) {
+        ts.Samples[0].Value = 0
+    }
 	if cache, ok := collection.whiteJobName[jobName]; ok {
 		hc := hashcode.String(metric)
 		incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
+        fmt.Println("prevCache")
+        cache.prevCache.Print()
 		sumVal := collection.updateSumCache(cache.sumCache, hc, &ts.Samples[0], incVal)
+        fmt.Println("sumCache")
+        cache.sumCache.Print()
 		collection.updatePack(jobName, ts, sumVal)
+        fmt.Println("pack")
+        cache.pack.Print()
 	} else {
 		RunLog.Info("without filter")
 		tempTs := *ts
 		TsQueue.MergeProducer(&tempTs)
 		return nil
 	}
-
 	return nil
 }
 
@@ -179,4 +189,26 @@ func GetMetric(ts *prompb.TimeSeries) string {
 	}
 	metric := fmt.Sprint(m)
 	return metric
+}
+
+func (c *cache) Print() {
+    for k, v := range c.data {
+        fmt.Println(k, v.Value)
+    }
+    fmt.Println("----------------------")
+}
+
+func (b *block) Print() {
+    for k, v := range b.data {
+        fmt.Println(k, GetMetric(v)+GetSample(v))
+    }
+    fmt.Println("----------------------")
+}
+
+func GetSample(ts *prompb.TimeSeries) string {
+    var sample string
+    for _,s := range ts.Samples {
+		sample = fmt.Sprintf("  %f %d", s.Value, s.Timestamp)
+    }
+    return sample
 }

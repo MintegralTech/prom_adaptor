@@ -3,8 +3,8 @@ WORKDIR /data
 COPY go.mod server.go ./
 RUN go build server.go
 FROM  alpine:3.9.5
-WORKDIR /prome_adpter
-COPY --from=0 /data/server /prome_adpter
+WORKDIR /prom_adpter
+COPY --from=0 /data/server /prom_adpter
 ENTRYPOINT ["./server"]
 
 

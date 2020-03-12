@@ -1270,3 +1270,1089 @@
 {"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004341185}","time":"2020-03-12T17:12:24+08:00"}
 {"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:12:24+08:00"}
 {"level":"info","msg":"without filter","time":"2020-03-12T17:12:24+08:00"}
+{"add metrics count:":52,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{1.5139e-05 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{1.5139e-05 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{4.7545e-05 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{8.6797e-05 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{8.6797e-05 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.000149481 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.899768e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.479808e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.445145e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{27472 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.2533168072636303e-06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.574024e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.899768e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.311936e+07 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.56352e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6061 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2447616e+07 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.668288e+07 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.5840043177325323e+09 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{33533 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{42976 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{49152 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.194304e+06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{764639 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{425984 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{425984 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.2958208e+07 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.06 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.2627968e+07 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400389965e+09 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.76986624e+08 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{41 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"add metrics count:":100,"level":"info","msg":"request producer","queue length":6,"time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.003138877 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004401185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{1.0236e-05 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{1.5139e-05 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{4.7545e-05 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{8.6797e-05 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{8.6797e-05 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.000159717 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.069984e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8.122224e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.445145e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{35914 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.0229244768059712e-06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.574024e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.069984e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.3750144e+07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.899968e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1442 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2554112e+07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6650112e+07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.5840044527383556e+09 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{37356 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{43656 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{65536 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.194304e+06 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{748255 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{458752 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{458752 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.2958208e+07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.2668928e+07 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400389965e+09 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.76986624e+08 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{46 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.001720845 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004461185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{1.0236e-05 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{1.5139e-05 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{4.7545e-05 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{8.6797e-05 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{8.6797e-05 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.000159717 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.65968e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8.71192e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.445145e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{36249 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.0229244768059712e-06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.574024e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.65968e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.3299584e+07 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.350528e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4678 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2554112e+07 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6650112e+07 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.5840044527383556e+09 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{40927 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{43656 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{65536 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.194304e+06 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{748255 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{458752 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{458752 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.2958208e+07 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.08 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.2668928e+07 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400389965e+09 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.76986624e+08 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{51 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004521185}","time":"2020-03-12T17:15:52+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:15:52+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:52+08:00"}
+{"add metrics count:":4,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.001941497 1584004521185}","time":"2020-03-12T17:15:54+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004521185}","time":"2020-03-12T17:15:54+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004521185}","time":"2020-03-12T17:15:54+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004521185}","time":"2020-03-12T17:15:54+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:15:54+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:15:54+08:00"}
+{"add metrics count:":26,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{1.5139e-05 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{4.7545e-05 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.000188272 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.076472e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.445145e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.21239520409739e-06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.076472e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.883584e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2644224e+07 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.5840045727565715e+09 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{44788 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{65536 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{748255 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{491520 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.2660736e+07 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.76986624e+08 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"add metrics count:":26,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{1.0236e-05 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{2.8555e-05 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{8.6797e-05 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{5 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{9.360592e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{43161 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.574024e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.373376e+07 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1627 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6617344e+07 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{38488 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.194304e+06 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{491520 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.2958208e+07 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.09 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400389965e+09 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{56 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.001463776 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004581185}","time":"2020-03-12T17:16:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:16:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:16:24+08:00"}
+{"add metrics count:":52,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{9 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.5246e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.5246e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3633 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{296 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.436808e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{2.5246e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.3504384e+07 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.211264e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3878 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.3504384e+07 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6715648e+07 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4174 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{28288 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{32768 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.473924e+06 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{788687 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.1387144e+07 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.0387456e+07 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400459099e+09 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.7541376e+08 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.002044313 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004641185}","time":"2020-03-12T17:17:24+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:17:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:17:24+08:00"}
+{"add metrics count:":52,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{9 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.220344e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.220344e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3633 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{683 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.436808e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.220344e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2898176e+07 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.817472e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7560 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2865408e+07 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6715648e+07 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8243 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{45696 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{49152 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.473924e+06 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{772303 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.1387144e+07 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.06496e+07 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400459099e+09 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.7541376e+08 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.001873391 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004701185}","time":"2020-03-12T17:18:24+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:18:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:18:24+08:00"}
+{"add metrics count:":52,"level":"info","msg":"request producer","queue length":0,"time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.25\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.5\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"0.75\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", quantile=\"1\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_sum{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_gc_duration_seconds_count{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_gc","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_goroutines{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{8 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_goroutines","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_info{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\", version=\"go1.14\"}","msg":"{1 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_info","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.863376e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_alloc_bytes_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.863376e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_buck_hash_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3633 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_frees_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1045 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_cpu_fraction{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_gc_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.436808e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_alloc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3.863376e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_idle_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2251008e+07 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.46464e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_objects{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{11012 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_released_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.2251008e+07 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_heap_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{6.6715648e+07 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_last_gc_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_lookups_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_mallocs_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{12057 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{3472 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_mcache_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{16384 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{45696 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_mspan_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{49152 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_next_gc_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{4.473924e+06 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_other_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{772303 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_inuse_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_stack_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{393216 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_memstats_sys_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.1387144e+07 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_memstats","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"go_threads{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"go_threads","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_cpu_seconds_total{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.01 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_cpu","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_max_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{655360 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_max","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_open_fds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{10 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_open","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_resident_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.150976e+07 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_resident","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_start_time_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1.58400459099e+09 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_start","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{7.7541376e+08 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"process_virtual_memory_max_bytes{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{-1 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"process_virtual","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_in_flight{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"200\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{13 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"500\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"promhttp_metric_handler_requests_total{code=\"503\", instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"promhttp_metric","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"13.125.253.106\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"test_counter_http{code=\"200\", instance=\"172.31.24.140:8888\", ip=\"52.78.40.93\", job=\"demo\", method=\"Get\", metrics_storage=\"m3db_remote\"}","msg":"{101 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"test_counter","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"up{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{1 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"up","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"scrape_duration_seconds{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0.001936128 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"scrape_duration","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"scrape_samples_scraped{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"scrape_samples_post_metric_relabeling{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{47 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"scrape_samples","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","metric":"scrape_series_added{instance=\"172.31.24.140:8888\", job=\"demo\", metrics_storage=\"m3db_remote\"}","msg":"{0 1584004761185}","time":"2020-03-12T17:19:24+08:00"}
+{"jobName":"scrape_series","level":"info","msg":"jobName","time":"2020-03-12T17:19:24+08:00"}
+{"level":"info","msg":"without filter","time":"2020-03-12T17:19:24+08:00"}

@@ -122,7 +122,7 @@ func (collection *Aggregators) MonitorPack() {
 			t := time.NewTicker(time.Second * time.Duration(window))
 			for {
 				<-t.C
-                fmt.Println(jobName," ",window," ",time.Now())
+                //fmt.Println(jobName," ",window," ",time.Now())
 				collection.whiteJobName[jobName].mtx.Lock()
 				pack := collection.whiteJobName[jobName].pack
 				for _, ts := range pack.data {
@@ -154,20 +154,20 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	if cache, ok := collection.whiteJobName[jobName]; ok {
 		hc := hashcode.String(metric)
 		incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-        fmt.Println("prevCache")
-        cache.prevCache.Print()
+        //fmt.Println("prevCache")
+        //cache.prevCache.Print()
 		sumVal := collection.updateSumCache(cache.sumCache, hc, &ts.Samples[0], incVal)
-        fmt.Println("sumCache")
-        cache.sumCache.Print()
+        //fmt.Println("sumCache")
+        //cache.sumCache.Print()
 		collection.updatePack(jobName, ts, sumVal)
-        fmt.Println("pack")
-        cache.pack.Print()
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "filter"}).Add(1)
+        //fmt.Println("pack")
+        //cache.pack.Print()
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
 	} else {
-		RunLog.Info("without filter")
+		RunLog.Info("without aggregate")
 		tempTs := *ts
 		TsQueue.MergeProducer(&tempTs)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "nofilter"}).Add(1)
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
 		return nil
 	}
 	return nil

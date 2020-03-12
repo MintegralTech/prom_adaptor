@@ -2,10 +2,11 @@ package main
 
 import (
     "net/http"
+    "github.com/gin-gonic/gin"
+    "github.com/sirupsen/logrus"
     . "github.com/MintegralTech/prom_adaptor/model"
     "github.com/MintegralTech/prom_adaptor/controller"
-    "github.com/sirupsen/logrus"
-    "github.com/gin-gonic/gin"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 
@@ -15,6 +16,7 @@ func main() {
     router.NoMethod(controller.HandleNotFound)
     router.NoRoute(controller.HandleNotFound)
     router.GET("/helloworld", helloworld)
+    router.GET("/metrics", gin.WrapH(promhttp.Handler()))
     router.POST("/receive", controller.Wrapper(controller.Receive))
     router.Run(":1234")
 }

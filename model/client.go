@@ -10,6 +10,7 @@ import (
     "github.com/sirupsen/logrus"
     "github.com/gogo/protobuf/proto"
     "github.com/prometheus/prometheus/prompb"
+    "github.com/prometheus/client_golang/prometheus"
 )
 
 type Client struct {
@@ -38,6 +39,7 @@ func (c *Client) Write(samples []*prompb.TimeSeries) error {
     req, _, err := buildWriteRequest(samples, buf)
     httpReq, err := http.NewRequest("POST", c.url, bytes.NewReader(req))
     if err != nil {
+        sendRequestCounter.With(prometheus.Labels{"succ": "false"}).Add(1)
         return err
     }
     httpReq.Header.Add("Content-Encoding", "snappy")
@@ -46,12 +48,14 @@ func (c *Client) Write(samples []*prompb.TimeSeries) error {
 
     httpResp, err := c.client.Do(httpReq)
     if err != nil {
+        sendRequestCounter.With(prometheus.Labels{"succ": "false"}).Add(1)
         return err
     }
     defer func() {
         io.Copy(ioutil.Discard, httpResp.Body)
         httpResp.Body.Close()
     }()
+    sendRequestCounter.With(prometheus.Labels{"succ": "true"}).Add(1)
     return nil
 }
 

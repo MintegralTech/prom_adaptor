@@ -44,7 +44,7 @@ func (tsq *TimeSeriesQueue) RequestConsumer() {
         case ts = <-tsq.requestQueue:
             err = Collection.MergeMetric(ts)
             if err != nil {
-                RunLog.Error("get job name error")
+                RunLog.Error(err)
             }
         }
     }
@@ -62,7 +62,9 @@ func (tsq *TimeSeriesQueue) MergeConsumer() {
         case ts = <-tsq.mergeQueue:
             tsSlice = append(tsSlice, ts)
             if len(tsSlice) == Conf.shard || len(tsq.mergeQueue) == 0 {
-                client.Write(tsSlice)
+                if err := client.Write(tsSlice); err != nil {
+                    ReqLog.Error(err)
+                }
                 tsSlice = []*prompb.TimeSeries{}
             }
         }

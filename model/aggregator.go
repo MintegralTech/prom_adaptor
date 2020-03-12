@@ -12,6 +12,7 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/prompb"
 	"github.com/sirupsen/logrus"
+    "github.com/prometheus/client_golang/prometheus"
 )
 
 type block struct {
@@ -121,6 +122,7 @@ func (collection *Aggregators) MonitorPack() {
 			t := time.NewTicker(time.Second * time.Duration(window))
 			for {
 				<-t.C
+                fmt.Println(jobName," ",window," ",time.Now())
 				collection.whiteJobName[jobName].mtx.Lock()
 				pack := collection.whiteJobName[jobName].pack
 				for _, ts := range pack.data {
@@ -138,12 +140,10 @@ func (collection *Aggregators) MonitorPack() {
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	metric := GetMetric(ts)
 	RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
-	fields := strings.Split(metric, "_")
-	RunLog.WithFields(logrus.Fields{"fields": fields}).Info("fields")
-	if len(fields) < 1 {
-		return errors.New("get job name error")
-	}
-	jobName := strings.ToLower(fields[0] + "_" + fields[1])
+    jobName, err := GetJobName(metric)
+    if err != nil {
+        return err
+    }
 	RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
 	if len(ts.Samples) != 1 {
 		return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
@@ -162,10 +162,12 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 		collection.updatePack(jobName, ts, sumVal)
         fmt.Println("pack")
         cache.pack.Print()
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "filter"}).Add(1)
 	} else {
 		RunLog.Info("without filter")
 		tempTs := *ts
 		TsQueue.MergeProducer(&tempTs)
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "nofilter"}).Add(1)
 		return nil
 	}
 	return nil
@@ -211,4 +213,23 @@ func GetSample(ts *prompb.TimeSeries) string {
 		sample = fmt.Sprintf("  %f %d", s.Value, s.Timestamp)
     }
     return sample
+}
+
+func GetJobName(metric string) (string, error) {
+    var jobName string
+    temp := strings.Split(metric, "{")
+    if len(temp) < 1 {
+        return "", errors.New("get metricsName error")
+    }
+    metricName := temp[0]
+	fields := strings.Split(metricName, "_")
+	if len(fields) <= 0 {
+		return "", errors.New("get jobName error")
+	}
+    if len(fields) == 1 {
+        jobName = strings.ToLower(fields[0])
+    } else {
+	    jobName = strings.ToLower(fields[0] + "_" + fields[1])
+    }
+    return jobName, nil
 }

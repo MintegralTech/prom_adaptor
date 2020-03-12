@@ -17,9 +17,13 @@ data:
     - "voyager_pioneer"
     - "prometheus_tsdb"
     - "test_counter"
+    - "test_gauge"
+    - "test_histogram"
     windows:
     - 60
     - 60
     - 60
     - 60
+    - 10
+    - 10
     - 10

@@ -8,6 +8,7 @@ import (
 type Config struct {
     buffer      int
     shard       int
+    mode        string
     remoteUrl   string
     windows     []int
     jobNames    []string
@@ -37,6 +38,7 @@ func NewConfig() *Config {
     v := setViper(defaultConfigPath, defaultConfigName, defaultConfigType)
     config.shard = v.GetInt("runtime.shard")
     config.buffer = v.GetInt("runtime.buffer")
+    config.mode = v.GetString("runtime.mode")
     config.windows = v.GetIntSlice("data.windows")
     config.jobNames = v.GetStringSlice("data.whitelist")
     config.remoteUrl = v.GetString("data.remoteUrl")

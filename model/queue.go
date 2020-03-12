@@ -60,6 +60,14 @@ func (tsq *TimeSeriesQueue) MergeConsumer() {
     for {
         select {
         case ts = <-tsq.mergeQueue:
+            if Conf.mode == "debug" {
+                for i, l := range ts.Labels {
+                    if l.Name == "__name__" {
+                        ts.Labels[i].Value += "_aggregator"
+                        break
+                    }
+                }
+            }
             tsSlice = append(tsSlice, ts)
             if len(tsSlice) == Conf.shard || len(tsq.mergeQueue) == 0 {
                 if err := client.Write(tsSlice); err != nil {

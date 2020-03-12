@@ -1,6 +1,8 @@
 runtime:
     buffer: 500000
     shard:  20
+    mode: "debug"
+
 log:
     #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
     logPath: "log"
@@ -15,15 +17,13 @@ data:
     - "dsp_dsp"
     - "dsp_impression"
     - "voyager_pioneer"
-    - "prometheus_tsdb"
-    - "test_counter"
-    - "test_gauge"
-    - "test_histogram"
+    - "adserver_as"
+    #- "prometheus_tsdb"
+    #- "test_counter"
+    #- "test_gauge"
+    #- "test_histogram"
     windows:
     - 60
     - 60
     - 60
     - 60
-    - 10
-    - 10
-    - 10

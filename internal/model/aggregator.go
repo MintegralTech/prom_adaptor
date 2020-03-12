@@ -3,16 +3,16 @@ package model
 import (
 	"errors"
 	"fmt"
-    "math"
+	"math"
 	"strings"
 	"sync"
 	"time"
 
 	"github.com/hashicorp/terraform/helper/hashcode"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/prompb"
 	"github.com/sirupsen/logrus"
-    "github.com/prometheus/client_golang/prometheus"
 )
 
 type block struct {
@@ -122,7 +122,7 @@ func (collection *Aggregators) MonitorPack() {
 			t := time.NewTicker(time.Second * time.Duration(window))
 			for {
 				<-t.C
-                //fmt.Println(jobName," ",window," ",time.Now())
+				//fmt.Println(jobName," ",window," ",time.Now())
 				collection.whiteJobName[jobName].mtx.Lock()
 				pack := collection.whiteJobName[jobName].pack
 				for _, ts := range pack.data {
@@ -140,34 +140,34 @@ func (collection *Aggregators) MonitorPack() {
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	metric := GetMetric(ts)
 	RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
-    jobName, err := GetJobName(metric)
-    if err != nil {
-        return err
-    }
+	jobName, err := GetJobName(metric)
+	if err != nil {
+		return err
+	}
 	RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
 	if len(ts.Samples) != 1 {
 		return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
 	}
-    if math.IsNaN(ts.Samples[0].Value) {
-        ts.Samples[0].Value = 0
-    }
+	if math.IsNaN(ts.Samples[0].Value) {
+		ts.Samples[0].Value = 0
+	}
 	if cache, ok := collection.whiteJobName[jobName]; ok {
 		hc := hashcode.String(metric)
 		incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-        //fmt.Println("prevCache")
-        //cache.prevCache.Print()
+		//fmt.Println("prevCache")
+		//cache.prevCache.Print()
 		sumVal := collection.updateSumCache(cache.sumCache, hc, &ts.Samples[0], incVal)
-        //fmt.Println("sumCache")
-        //cache.sumCache.Print()
+		//fmt.Println("sumCache")
+		//cache.sumCache.Print()
 		collection.updatePack(jobName, ts, sumVal)
-        //fmt.Println("pack")
-        //cache.pack.Print()
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
+		//fmt.Println("pack")
+		//cache.pack.Print()
+		mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
 	} else {
 		RunLog.Info("without aggregate")
 		tempTs := *ts
 		TsQueue.MergeProducer(&tempTs)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
+		mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
 		return nil
 	}
 	return nil
@@ -194,42 +194,42 @@ func GetMetric(ts *prompb.TimeSeries) string {
 }
 
 func (c *cache) Print() {
-    for k, v := range c.data {
-        fmt.Println(k, v.Value)
-    }
-    fmt.Println("----------------------")
+	for k, v := range c.data {
+		fmt.Println(k, v.Value)
+	}
+	fmt.Println("----------------------")
 }
 
 func (b *block) Print() {
-    for k, v := range b.data {
-        fmt.Println(k, GetMetric(v)+GetSample(v))
-    }
-    fmt.Println("----------------------")
+	for k, v := range b.data {
+		fmt.Println(k, GetMetric(v)+GetSample(v))
+	}
+	fmt.Println("----------------------")
 }
 
 func GetSample(ts *prompb.TimeSeries) string {
-    var sample string
-    for _,s := range ts.Samples {
+	var sample string
+	for _, s := range ts.Samples {
 		sample = fmt.Sprintf("  %f %d", s.Value, s.Timestamp)
-    }
-    return sample
+	}
+	return sample
 }
 
 func GetJobName(metric string) (string, error) {
-    var jobName string
-    temp := strings.Split(metric, "{")
-    if len(temp) < 1 {
-        return "", errors.New("get metricsName error")
-    }
-    metricName := temp[0]
+	var jobName string
+	temp := strings.Split(metric, "{")
+	if len(temp) < 1 {
+		return "", errors.New("get metricsName error")
+	}
+	metricName := temp[0]
 	fields := strings.Split(metricName, "_")
 	if len(fields) <= 0 {
 		return "", errors.New("get jobName error")
 	}
-    if len(fields) == 1 {
-        jobName = strings.ToLower(fields[0])
-    } else {
-	    jobName = strings.ToLower(fields[0] + "_" + fields[1])
-    }
-    return jobName, nil
+	if len(fields) == 1 {
+		jobName = strings.ToLower(fields[0])
+	} else {
+		jobName = strings.ToLower(fields[0] + "_" + fields[1])
+	}
+	return jobName, nil
 }

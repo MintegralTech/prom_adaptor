@@ -1,7 +1,7 @@
 runtime:
-    buffer: 500000
+    buffer: 1000000
     shard:  30
-    mode: "debug"
+    mode: "prod" # debug mode: metrics name will add a aggregator suffix
 
 log:
     #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
@@ -23,7 +23,7 @@ data:
     #- "test_gauge"
     #- "test_histogram"
     windows:
-    - 60
-    - 60
-    - 60
-    - 60
+    - 120
+    - 120
+    - 120
+    - 120

@@ -54,7 +54,7 @@ func InitMonitor() {
 }
 
 func GaugeMonitor() {
-	t := time.NewTicker(time.Second * time.Duration(30))
+	t := time.NewTicker(time.Second * time.Duration(15))
 	for {
 		<-t.C
 		tsQueueLengthGauge.With(prometheus.Labels{"type": "request"}).Set(float64(TsQueue.RequestLength()))

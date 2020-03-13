@@ -43,6 +43,15 @@ var (
 		},
 		[]string{"succ"},
 	)
+	metricsSizeCounter = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Namespace: "adapter",
+			Subsystem: "aggregator",
+			Name:      "metrics_size",
+			Help:      "data size",
+		},
+		[]string{"jobname"},
+	)
 )
 
 func InitMonitor() {
@@ -51,6 +60,7 @@ func InitMonitor() {
 	prometheus.MustRegister(mergeMetricCounter)
 	prometheus.MustRegister(cacheDataLengthGauge)
 	prometheus.MustRegister(sendRequestCounter)
+	prometheus.MustRegister(metricsSizeCounter)
 }
 
 func GaugeMonitor() {

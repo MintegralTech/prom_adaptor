@@ -1,8 +1,9 @@
 package model
 
 import (
-	"github.com/prometheus/prometheus/prompb"
 	"github.com/sirupsen/logrus"
+	"github.com/prometheus/prometheus/prompb"
+    "github.com/prometheus/client_golang/prometheus"
 )
 
 type TimeSeriesQueue struct {
@@ -59,12 +60,19 @@ func (tsq *TimeSeriesQueue) MergeConsumer() {
 	for {
 		select {
 		case ts = <-tsq.mergeQueue:
+            // debug
 			if Conf.mode == "debug" {
 				for i, l := range ts.Labels {
 					if l.Name == "__name__" {
 						ts.Labels[i].Value += "_aggregator"
 						break
 					}
+				}
+			}
+			for _, l := range ts.Labels {
+				if l.Name == "job" {
+					metricsSizeCounter.With(prometheus.Labels{"jobname": l.Value}).Inc()
+					break
 				}
 			}
 			tsSlice = append(tsSlice, ts)

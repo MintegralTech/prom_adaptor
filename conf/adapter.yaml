@@ -1,6 +1,6 @@
 runtime:
     buffer: 500000
-    shard:  20
+    shard:  30
     mode: "debug"
 
 log:

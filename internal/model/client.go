@@ -1,8 +1,9 @@
 package model
 
 import (
-	"bytes"
 	"io"
+    "time"
+	"bytes"
 	"io/ioutil"
 	"net/http"
 
@@ -14,8 +15,8 @@ import (
 )
 
 type Client struct {
-	url    string
-	client *http.Client
+	url       string
+	client    *http.Client
 }
 
 var client *Client
@@ -25,9 +26,17 @@ func InitClient() {
 }
 
 func NewClient(url string) *Client {
+    var transport *http.Transport
+    transport = &http.Transport{
+        MaxIdleConns:        10,
+        IdleConnTimeout:     time.Duration(10) * time.Second,
+        MaxIdleConnsPerHost: 250, // 使用长连接，需要调高该值
+    }
 	return &Client{
 		url:    url,
-		client: &http.Client{},
+		client: &http.Client{
+            Transport: transport,
+        },
 	}
 }
 

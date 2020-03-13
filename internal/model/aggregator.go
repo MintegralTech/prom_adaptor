@@ -38,8 +38,8 @@ type Aggregators struct {
 }
 
 const (
-	//INSTANCE = "instance"
-	INSTANCE = "ip"
+	INSTANCE = "instance"
+	//INSTANCE = "ip"
 )
 
 var Collection *Aggregators

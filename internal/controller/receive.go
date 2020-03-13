@@ -6,13 +6,13 @@ import (
 	"github.com/gogo/protobuf/proto"
 	"github.com/golang/snappy"
 	"github.com/prometheus/prometheus/prompb"
-	"github.com/sirupsen/logrus"
+	_ "github.com/sirupsen/logrus"
 	"io/ioutil"
 )
 
 func Receive(c *gin.Context) error {
 	compressed, err := ioutil.ReadAll(c.Request.Body)
-	AccLog.WithFields(logrus.Fields{"request": c.Request.PostForm, "url": c.Request.URL}).Info("access")
+	//AccLog.WithFields(logrus.Fields{"request": c.Request.PostForm, "url": c.Request.URL}).Info("access")
 	if err != nil {
 		return ServerError()
 	}

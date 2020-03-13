@@ -12,7 +12,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/prompb"
-	"github.com/sirupsen/logrus"
+	_ "github.com/sirupsen/logrus"
 )
 
 type block struct {
@@ -139,36 +139,36 @@ func (collection *Aggregators) MonitorPack() {
 
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	metric := GetMetric(ts)
-	RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
+	//RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
 	jobName, err := GetJobName(metric)
 	if err != nil {
 		return err
 	}
-	RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
+	//RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
 	if len(ts.Samples) != 1 {
 		return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
 	}
 	if math.IsNaN(ts.Samples[0].Value) {
 		ts.Samples[0].Value = 0
 	}
+    for _, l := range ts.Labels {
+        if l.Name == "ip" {
+            tempTs := *ts
+            TsQueue.MergeProducer(&tempTs)
+            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
+            return nil
+        }
+    }
 	if cache, ok := collection.whiteJobName[jobName]; ok {
 		hc := hashcode.String(metric)
 		incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-		//fmt.Println("prevCache")
-		//cache.prevCache.Print()
 		sumVal := collection.updateSumCache(cache.sumCache, hc, &ts.Samples[0], incVal)
-		//fmt.Println("sumCache")
-		//cache.sumCache.Print()
 		collection.updatePack(jobName, ts, sumVal)
-		//fmt.Println("pack")
-		//cache.pack.Print()
 		mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
 	} else {
-		RunLog.Info("without aggregate")
 		tempTs := *ts
 		TsQueue.MergeProducer(&tempTs)
 		mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
-		return nil
 	}
 	return nil
 }

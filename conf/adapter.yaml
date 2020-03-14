@@ -19,7 +19,7 @@ data:
     - "voyager_pioneer"
     - "adserver_as"
     #- "prometheus_tsdb"
-    - "test_counter"
+    #- "test_counter"
     #- "test_gauge"
     #- "test_histogram"
     windows:
@@ -27,4 +27,4 @@ data:
     - 120
     - 120
     - 120
-    - 10
+    #- 10

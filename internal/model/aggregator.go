@@ -104,7 +104,7 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
 	if _, ok := pack.data[hc]; !ok {
 		pack.data[hc] = noInstTs
 	} else {
-		pack.data[hc].Samples[0].Value += noInstTs.Samples[0].Value
+		pack.data[hc].Samples[0].Value += sumVal
 	}
 }
 

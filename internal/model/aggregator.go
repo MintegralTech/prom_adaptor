@@ -15,8 +15,13 @@ import (
 	_ "github.com/sirupsen/logrus"
 )
 
+type TimeSeries struct {
+    ts   *prompb.TimeSeries
+    flag bool
+}
+
 type block struct {
-	data map[int]*prompb.TimeSeries
+	data map[int]*TimeSeries
 }
 
 type cache struct {
@@ -28,7 +33,6 @@ type Aggregator struct {
 	mtx     sync.Mutex
 
 	prevCache *cache
-	sumCache  *cache
 	pack      *block
 }
 
@@ -52,8 +56,7 @@ func NewAggregator(jobName string) *Aggregator {
 	return &Aggregator{
 		jobName:   jobName,
 		prevCache: &cache{data: make(map[int]*prompb.Sample)},
-		sumCache:  &cache{data: make(map[int]*prompb.Sample)},
-		pack:      &block{data: make(map[int]*prompb.TimeSeries)},
+		pack:      &block{data: make(map[int]*TimeSeries)},
 	}
 }
 
@@ -71,30 +74,22 @@ func NewAggregators() *Aggregators {
 func (collection *Aggregators) updatePrevCache(prevCache *cache, hc int, sample *prompb.Sample) float64 {
 	incVal := sample.Value
 	if prevSample, ok := prevCache.data[hc]; ok {
-		curVal, prevVal := sample.Value, prevSample.Value
-		if curVal >= prevVal {
-			incVal = curVal - prevVal
-		}
+        //fmt.Println(prevSample.Timestamp, sample.Timestamp)
+        if prevSample.Timestamp > sample.Timestamp {
+            incVal = 0
+        } else {
+		    curVal, prevVal := sample.Value, prevSample.Value
+		    if curVal >= prevVal {
+                incVal = curVal - prevVal
+		    }
+        }
 	}
 	tempSample := *sample
 	prevCache.data[hc] = &tempSample
 	return incVal
 }
 
-func (collection *Aggregators) updateSumCache(sumCache *cache, hc int, sample *prompb.Sample, incVal float64) float64 {
-	sumVal := incVal
-	if _, ok := sumCache.data[hc]; ok {
-		sumCache.data[hc].Value += incVal
-		sumCache.data[hc].Timestamp = sample.Timestamp
-		sumVal = sumCache.data[hc].Value
-	} else {
-		tempSample := *sample
-		sumCache.data[hc] = &tempSample
-	}
-	return sumVal
-}
-
-func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, sumVal float64) {
+func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, incVal float64) {
 	noInstTs := DeleteLable(ts, INSTANCE)
 	metric := GetMetric(noInstTs)
 	hc := hashcode.String(metric)
@@ -102,9 +97,13 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
 	defer collection.whiteJobName[jobName].mtx.Unlock()
 	pack := collection.whiteJobName[jobName].pack
 	if _, ok := pack.data[hc]; !ok {
-		pack.data[hc] = noInstTs
+        pack.data[hc] = &TimeSeries {
+             ts:   noInstTs,
+             flag: true,
+        }
 	} else {
-		pack.data[hc].Samples[0].Value += noInstTs.Samples[0].Value
+		pack.data[hc].ts.Samples[0].Value += incVal
+	    pack.data[hc].flag = true
 	}
 }
 
@@ -125,11 +124,14 @@ func (collection *Aggregators) MonitorPack() {
 				//fmt.Println(jobName," ",window," ",time.Now())
 				collection.whiteJobName[jobName].mtx.Lock()
 				pack := collection.whiteJobName[jobName].pack
-				for _, ts := range pack.data {
-					tempTs := *ts
-					TsQueue.MergeProducer(&tempTs)
+                //pack.Print()
+				for _, val := range pack.data {
+                    if val.flag {
+                        val.flag = false
+					    tempTs := *(val.ts)
+					    TsQueue.MergeProducer(&tempTs)
+                    }
 				}
-				collection.whiteJobName[jobName].pack = &block{make(map[int]*prompb.TimeSeries)}
 				collection.whiteJobName[jobName].mtx.Unlock()
 			}
 		}()
@@ -139,7 +141,6 @@ func (collection *Aggregators) MonitorPack() {
 
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	metric := GetMetric(ts)
-	//RunLog.WithFields(logrus.Fields{"metric": metric}).Info(ts.Samples[0])
 	jobName, err := GetJobName(metric)
 	if err != nil {
 		return err
@@ -162,8 +163,8 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
 	if cache, ok := collection.whiteJobName[jobName]; ok {
 		hc := hashcode.String(metric)
 		incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-		sumVal := collection.updateSumCache(cache.sumCache, hc, &ts.Samples[0], incVal)
-		collection.updatePack(jobName, ts, sumVal)
+        //cache.prevCache.Print()
+		collection.updatePack(jobName, ts, incVal)
 		mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
 	} else {
 		tempTs := *ts
@@ -197,12 +198,12 @@ func (c *cache) Print() {
 	for k, v := range c.data {
 		fmt.Println(k, v.Value)
 	}
-	fmt.Println("----------------------")
+	fmt.Println("======================")
 }
 
 func (b *block) Print() {
 	for k, v := range b.data {
-		fmt.Println(k, GetMetric(v)+GetSample(v))
+		fmt.Println(k, GetMetric(v.ts)+GetSample(v.ts), v.flag)
 	}
 	fmt.Println("----------------------")
 }

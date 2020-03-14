@@ -1,7 +1,7 @@
 runtime:
     buffer: 1000000
     shard:  30
-    mode: "prod" # debug mode: metrics name will add a aggregator suffix
+    mode: "debug" # debug mode: metrics name will add a aggregator suffix
 
 log:
     #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
@@ -19,7 +19,7 @@ data:
     - "voyager_pioneer"
     - "adserver_as"
     #- "prometheus_tsdb"
-    #- "test_counter"
+    - "test_counter"
     #- "test_gauge"
     #- "test_histogram"
     windows:
@@ -27,3 +27,4 @@ data:
     - 120
     - 120
     - 120
+    - 10

@@ -32,7 +32,7 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
 	RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(), "add metrics count:": len(wreq.Timeseries)}).Info("request producer")
 	for _, ts := range wreq.Timeseries {
 		tsq.requestQueue <- ts
-		AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("request producer")
+		//AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("request producer")
 	}
 }
 

@@ -1,5 +1,5 @@
 runtime:
-    buffer: 1000000
+    buffer: 2000000
     shard:  35
     mode: "prod" # debug mode: metrics name will add a aggregator suffix
 

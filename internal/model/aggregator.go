@@ -79,6 +79,7 @@ func (collection *Aggregators) updatePrevCache(prevCache *cache, hc int, sample 
         if prevSample.Timestamp > sample.Timestamp {
             RunLog.WithFields(logrus.Fields{"prev timestamp":prevSample.Timestamp, "cur timestamp": sample.Timestamp}).Info("delay")
             incVal = 0
+            return incVal
         } else {
             curVal, prevVal := sample.Value, prevSample.Value
             if curVal >= prevVal {
@@ -105,7 +106,9 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
         }
     } else {
         pack.data[hc].ts.Samples[0].Value += incVal
-        pack.data[hc].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
+        if pack.data[hc].ts.Samples[0].Timestamp < ts.Samples[0].Timestamp {
+            pack.data[hc].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
+        }
         pack.data[hc].flag = true
     }
 }

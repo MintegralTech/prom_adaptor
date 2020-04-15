@@ -7,7 +7,7 @@ COPY internal internal
 RUN go build cmd/server.go
 
 FROM  alpine:3.9.5
-WORKDIR /prom_adptor
-COPY conf conf
-COPY --from=0 /data/server /prom_adptor
+WORKDIR /prom_adaptor
+#COPY conf conf
+COPY --from=0 /data/server /prom_adaptor
 ENTRYPOINT ["./server"]

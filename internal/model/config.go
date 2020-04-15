@@ -24,7 +24,7 @@ var Conf *Config
 
 var (
     defaultConfigPath = "./conf"
-    defaultConfigName = "adapter"
+    defaultConfigName = "adaptor"
     defaultConfigType = "yaml"
 )
 

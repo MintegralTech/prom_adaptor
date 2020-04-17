@@ -9,7 +9,6 @@ import (
     "sync"
     "time"
 
-    "github.com/hashicorp/terraform/helper/hashcode"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/common/model"
     "github.com/prometheus/prometheus/prompb"
@@ -22,11 +21,11 @@ type TimeSeries struct {
 }
 
 type block struct {
-    data map[int]*TimeSeries
+    data map[string]*TimeSeries
 }
 
 type cache struct {
-    data map[int]*prompb.Sample
+    data map[string]*prompb.Sample
 }
 
 type Aggregator struct {
@@ -39,12 +38,11 @@ type Aggregator struct {
 
 type Aggregators struct {
     jobNum       int
-    whiteJobName map[string]*Aggregator
+    aggregator map[string]*Aggregator
 }
 
 const (
     INSTANCE = "instance"
-    //INSTANCE = "ip"
 )
 
 var Collection *Aggregators
@@ -56,60 +54,55 @@ func InitCollection() {
 func NewAggregator(jobName string) *Aggregator {
     return &Aggregator{
         jobName:   jobName,
-        prevCache: &cache{data: make(map[int]*prompb.Sample)},
-        pack:      &block{data: make(map[int]*TimeSeries)},
+        prevCache: &cache{data: make(map[string]*prompb.Sample)},
+        pack:      &block{data: make(map[string]*TimeSeries)},
     }
 }
 
 func NewAggregators() *Aggregators {
     aggs := &Aggregators{
         jobNum:       len(Conf.jobNames),
-        whiteJobName: make(map[string]*Aggregator, len(Conf.jobNames)),
+        aggregator: make(map[string]*Aggregator, len(Conf.jobNames)),
     }
     for _, jobName := range Conf.jobNames {
-        aggs.whiteJobName[jobName] = NewAggregator(jobName)
+        aggs.aggregator[jobName] = NewAggregator(jobName)
     }
     return aggs
 }
 
-func (collection *Aggregators) updatePrevCache(prevCache *cache, hc int, sample *prompb.Sample) float64 {
+func (collection *Aggregators) updatePrevCache(prevCache *cache, metric string, sample *prompb.Sample) float64 {
     incVal := sample.Value
-    if prevSample, ok := prevCache.data[hc]; ok {
-        //fmt.Println(prevSample.Timestamp, sample.Timestamp)
+    if prevSample, ok := prevCache.data[metric]; ok {
+        curVal, prevVal := sample.Value, prevSample.Value
         if prevSample.Timestamp > sample.Timestamp {
-            RunLog.WithFields(logrus.Fields{"prev timestamp":prevSample.Timestamp, "cur timestamp": sample.Timestamp}).Info("delay")
-            incVal = 0
-            return incVal
-        } else {
-            curVal, prevVal := sample.Value, prevSample.Value
-            if curVal >= prevVal {
-                incVal = curVal - prevVal
-            }
+            return 0
+        }
+        if curVal >= prevVal {
+            incVal = curVal - prevVal
         }
     }
     tempSample := *sample
-    prevCache.data[hc] = &tempSample
+    prevCache.data[metric] = &tempSample
     return incVal
 }
 
 func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, incVal float64) {
     noInstTs := DeleteLable(ts, INSTANCE)
     metric := GetMetric(noInstTs)
-    hc := hashcode.String(metric)
-    collection.whiteJobName[jobName].mtx.Lock()
-    defer collection.whiteJobName[jobName].mtx.Unlock()
-    pack := collection.whiteJobName[jobName].pack
-    if _, ok := pack.data[hc]; !ok {
-        pack.data[hc] = &TimeSeries {
+    collection.aggregator[jobName].mtx.Lock()
+    defer collection.aggregator[jobName].mtx.Unlock()
+    pack := collection.aggregator[jobName].pack
+    if _, ok := pack.data[metric]; !ok {
+        pack.data[metric] = &TimeSeries {
              ts:   noInstTs,
              flag: true,
         }
     } else {
-        pack.data[hc].ts.Samples[0].Value += incVal
-        if pack.data[hc].ts.Samples[0].Timestamp < ts.Samples[0].Timestamp {
-            pack.data[hc].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
+        pack.data[metric].ts.Samples[0].Value += incVal
+        if pack.data[metric].ts.Samples[0].Timestamp < ts.Samples[0].Timestamp {
+            pack.data[metric].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
         }
-        pack.data[hc].flag = true
+        pack.data[metric].flag = true
     }
 }
 
@@ -118,8 +111,7 @@ func (collection *Aggregators) MonitorPack() {
     for i := 0; i < collection.jobNum; i++ {
         ch <- struct{}{}
     }
-    jobIndex := 0
-    for {
+    for jobIndex := 0; ; jobIndex++ {
         <-ch
         jobName := Conf.jobNames[jobIndex]
         window := Conf.windows[jobIndex]
@@ -127,10 +119,9 @@ func (collection *Aggregators) MonitorPack() {
             t := time.NewTicker(time.Second * time.Duration(window))
             for {
                 <-t.C
-                //fmt.Println(jobName," ",window," ",time.Now())
-                collection.whiteJobName[jobName].mtx.Lock()
-                pack := collection.whiteJobName[jobName].pack
-                pack.Print()
+                collection.aggregator[jobName].mtx.Lock()
+                pack := collection.aggregator[jobName].pack
+                //pack.Print()
                 for _, val := range pack.data {
                     packStatusCounter.With(prometheus.Labels{"jobname": jobName, "flag": strconv.FormatBool(val.flag)}).Add(1)
                     if val.flag {
@@ -139,10 +130,9 @@ func (collection *Aggregators) MonitorPack() {
                         TsQueue.MergeProducer(&tempTs)
                     }
                 }
-                collection.whiteJobName[jobName].mtx.Unlock()
+                collection.aggregator[jobName].mtx.Unlock()
             }
         }()
-        jobIndex++
     }
 }
 
@@ -156,6 +146,7 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
     if len(ts.Samples) != 1 {
         return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
     }
+    //带ip的label直接放到请求队列, 不做聚合
     for _, l := range ts.Labels {
         if l.Name == "ip" {
             tempTs := *ts
@@ -168,16 +159,14 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
         RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
         ts.Samples[0].Value = 0
     }
-    if cache, ok := collection.whiteJobName[jobName]; ok {
-        hc := hashcode.String(metric)
-        incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-        //cache.prevCache.Print()
+    if cache, ok := collection.aggregator[jobName]; ok {
+        incVal := collection.updatePrevCache(cache.prevCache, metric, &ts.Samples[0])
         collection.updatePack(jobName, ts, incVal)
         mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
     } else {
         tempTs := *ts
         TsQueue.MergeProducer(&tempTs)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate"}).Add(1)
     }
     return nil
 }
@@ -206,14 +195,12 @@ func (c *cache) Print() {
     for k, v := range c.data {
         fmt.Println(k, v.Value)
     }
-    fmt.Println("======================")
 }
 
 func (b *block) Print() {
     for k, v := range b.data {
         fmt.Println(k, GetMetric(v.ts)+GetSample(v.ts), v.flag)
     }
-    fmt.Println("----------------------")
 }
 
 func GetSample(ts *prompb.TimeSeries) string {
@@ -242,3 +229,4 @@ func GetJobName(metric string) (string, error) {
     }
     return jobName, nil
 }
+

@@ -11,7 +11,7 @@ import (
     "github.com/golang/snappy"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/prometheus/prompb"
-    "github.com/sirupsen/logrus"
+    _ "github.com/sirupsen/logrus"
 )
 
 type Client struct {

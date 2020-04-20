@@ -1,7 +1,7 @@
 package model
 
 import (
-    "github.com/sirupsen/logrus"
+    _ "github.com/sirupsen/logrus"
     "github.com/prometheus/prometheus/prompb"
     "github.com/prometheus/client_golang/prometheus"
 )

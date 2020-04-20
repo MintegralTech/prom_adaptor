@@ -12,7 +12,7 @@ import (
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/common/model"
     "github.com/prometheus/prometheus/prompb"
-    "github.com/sirupsen/logrus"
+    _ "github.com/sirupsen/logrus"
 )
 
 // 聚合后的数据带上一个flag 用来标记本次自然时间窗口是否有聚合操作

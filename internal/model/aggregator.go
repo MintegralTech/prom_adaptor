@@ -15,19 +15,23 @@ import (
     "github.com/sirupsen/logrus"
 )
 
+// 聚合后的数据带上一个flag 用来标记本次自然时间窗口是否有聚合操作
 type TimeSeries struct {
     ts   *prompb.TimeSeries
     flag bool
 }
 
-type block struct {
-    data map[string]*TimeSeries
-}
-
+// 存放上一采集的数据
 type cache struct {
     data map[string]*prompb.Sample
 }
 
+// 存放聚合后的数据
+type block struct {
+    data map[string]*TimeSeries
+}
+
+// 聚合器，与job绑定
 type Aggregator struct {
     jobName string
     mtx     sync.Mutex
@@ -36,8 +40,9 @@ type Aggregator struct {
     pack      *block
 }
 
+
 type Aggregators struct {
-    jobNum       int
+    jobNum     int
     aggregator map[string]*Aggregator
 }
 
@@ -98,7 +103,11 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
              flag: true,
         }
     } else {
-        pack.data[metric].ts.Samples[0].Value += incVal
+        if pack.data[metric].ts.Samples[0].Value + incVal >= 0 {
+            pack.data[metric].ts.Samples[0].Value += incVal
+        } else {
+            pack.data[metric].ts.Samples[0].Value = incVal
+        }
         if pack.data[metric].ts.Samples[0].Timestamp < ts.Samples[0].Timestamp {
             pack.data[metric].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
         }
@@ -106,7 +115,7 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
     }
 }
 
-func (collection *Aggregators) MonitorPack() {
+func (collection *Aggregators) PutIntoMergeQueue() {
     ch := make(chan struct{}, collection.jobNum)
     for i := 0; i < collection.jobNum; i++ {
         ch <- struct{}{}
@@ -156,7 +165,7 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
         }
     }
     if math.IsNaN(ts.Samples[0].Value) {
-        RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
+        //RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
         ts.Samples[0].Value = 0
     }
     if cache, ok := collection.aggregator[jobName]; ok {

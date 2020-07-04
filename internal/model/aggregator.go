@@ -160,7 +160,7 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries) error {
         if l.Name == "ip" {
             tempTs := *ts
             TsQueue.MergeProducer(&tempTs)
-            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "withou-aggregate"}).Add(1)
+            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate"}).Add(1)
             return nil
         }
     }

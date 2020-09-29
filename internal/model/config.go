@@ -6,12 +6,13 @@ import (
 )
 
 type Config struct {
-    buffer    int
+    buffer    int //队列的长度
     shard     int
     mode      string
     remoteUrl string
-    windows   []int
-    jobNames  []string
+    windows   []int  //控制聚合的时间窗口
+    jobNames  []string //白名单，在白名单的job进行聚合
+    queuesNum    int //队列的数量
 
     //log
     logPath     string
@@ -41,6 +42,7 @@ func NewConfig() *Config {
     config.windows = v.GetIntSlice("data.windows")
     config.jobNames = v.GetStringSlice("data.whitelist")
     config.remoteUrl = v.GetString("data.remoteUrl")
+    config.queuesNum = v.GetInt("runtime.queuesNum")
 
     //log
     config.logPath = v.GetString("log.logPath")

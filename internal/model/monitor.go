@@ -1,6 +1,7 @@
 package model
 
 import (
+    "strconv"
     "time"
 
     "github.com/prometheus/client_golang/prometheus"
@@ -14,7 +15,7 @@ var (
             Name:      "queue_length",
             Help:      "timeSeries queue length",
         },
-        []string{"type"},
+        []string{"type", "queueIndex"},
     )
     mergeMetricCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
@@ -43,6 +44,17 @@ var (
         },
         []string{"succ"},
     )
+
+    receiveRequestCounter = prometheus.NewCounterVec(
+        prometheus.CounterOpts{
+            Namespace: "adapter",
+            Subsystem: "aggregator",
+            Name:      "receive_request_count",
+            Help:      "receive request counter",
+        },
+        []string{"jobname"},
+    )
+
     metricsSizeCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: "adapter",
@@ -71,14 +83,17 @@ func InitMonitor() {
     prometheus.MustRegister(sendRequestCounter)
     prometheus.MustRegister(metricsSizeCounter)
     prometheus.MustRegister(packStatusCounter)
+    prometheus.MustRegister(receiveRequestCounter)
 }
 
 func GaugeMonitor() {
     t := time.NewTicker(time.Second * time.Duration(15))
     for {
         <-t.C
-        tsQueueLengthGauge.With(prometheus.Labels{"type": "request"}).Set(float64(TsQueue.RequestLength()))
-        tsQueueLengthGauge.With(prometheus.Labels{"type": "merge"}).Set(float64(TsQueue.MergeLength()))
+        for i := 0; i < Conf.queuesNum; i++ {
+            tsQueueLengthGauge.With(prometheus.Labels{"type": "request", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(TsQueue.RequestLength(i)))
+            tsQueueLengthGauge.With(prometheus.Labels{"type": "merge", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(TsQueue.MergeLength(i)))
+        }
         for jobName, agg := range Collection.whiteJobName {
             cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(agg.prevCache.data)))
         }

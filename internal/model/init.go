@@ -18,8 +18,11 @@ func init() {
     InitMonitor()
     fmt.Println("init monitor")
 
-    go TsQueue.RequestConsumer()
-    go TsQueue.MergeConsumer()
-    go Collection.MonitorPack()
+    for i := 0; i < Conf.queuesNum; i++{
+        go TsQueue.RequestConsumer(i)
+        go TsQueue.MergeConsumer(i)
+        go Collection.MonitorPack(i)
+    }
+
     go GaugeMonitor()
 }

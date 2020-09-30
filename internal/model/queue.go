@@ -31,7 +31,7 @@ func InitQueue() {
         buffer = Conf.buffer
     }
     queuesNum := defaultQueuesNum
-    if Conf.queuesNum > buffer{
+    if Conf.queuesNum > queuesNum{
     	queuesNum = Conf.queuesNum
 	}
     TsQueue = NewTimeSeriesQueue(buffer, queuesNum)

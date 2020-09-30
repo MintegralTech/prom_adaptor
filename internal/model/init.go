@@ -25,4 +25,5 @@ func init() {
     }
 
     go GaugeMonitor()
+    fmt.Println("init all done")
 }

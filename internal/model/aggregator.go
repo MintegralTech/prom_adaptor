@@ -158,7 +158,7 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) err
         if l.Name == "ip" {
             tempTs := *ts
             TsQueue.MergeProducer(&tempTs, index)
-            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate"}).Add(1)
+            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Inc()
             return nil
         }
     }
@@ -171,15 +171,16 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) err
     if cache, ok := collection.whiteJobName[jobName]; ok {
         collection.whiteJobName[jobName].mtx.Lock()
         incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-        cache.prevCache.Print()
+        collection.whiteJobName[jobName].mtx.Unlock()
+        //cache.prevCache.Print()
         collection.updatePack(jobName, ts, incVal)
 
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Inc()
 
     } else {
         tempTs := *ts
         TsQueue.MergeProducer(&tempTs, index)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate"}).Add(1)
+        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Inc()
     }
 
     return nil

@@ -29,7 +29,7 @@ var (
             Name:      "merge_count",
             Help:      "merge counter",
         },
-        []string{"jobname", "type"},
+        []string{"jobname", "type", "queueIndex"},
     )
     cacheDataLengthGauge = prometheus.NewGaugeVec(
         prometheus.GaugeOpts{

@@ -40,22 +40,32 @@ var (
         },
         []string{"jobname", "type"},
     )
-    sendRequestCounter = prometheus.NewCounterVec(
+    sendMetricsNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: namespace,
             Subsystem: subsystem,
-            Name:      "send_request_count",
-            Help:      "send request counter",
+            Name:      "send_metrics_num_count",
+            Help:      "send metrics num counter",
         },
         []string{"succ", "queueIndex"},
     )
 
-    receiveRequestCounter = prometheus.NewCounterVec(
+    sendRequestNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: namespace,
             Subsystem: subsystem,
-            Name:      "receive_request_count",
-            Help:      "receive request counter",
+            Name:      "send_request_num_count",
+            Help:      "send request num counter",
+        },
+        []string{"succ", "queueIndex"},
+    )
+
+    receiveMetricsNumCounter = prometheus.NewCounterVec(
+        prometheus.CounterOpts{
+            Namespace: namespace,
+            Subsystem: subsystem,
+            Name:      "receive_metrics_num_count",
+            Help:      "receive metrics num counter",
         },
         []string{"jobname", "queueIndex"},
     )
@@ -85,10 +95,11 @@ func InitMonitor() {
     prometheus.MustRegister(tsQueueLengthGauge)
     prometheus.MustRegister(mergeMetricCounter)
     prometheus.MustRegister(cacheDataLengthGauge)
-    prometheus.MustRegister(sendRequestCounter)
+    prometheus.MustRegister(sendRequestNumCounter)
     prometheus.MustRegister(metricsSizeCounter)
     prometheus.MustRegister(packStatusCounter)
-    prometheus.MustRegister(receiveRequestCounter)
+    prometheus.MustRegister(receiveMetricsNumCounter)
+    prometheus.MustRegister(sendMetricsNumCounter)
 }
 
 func GaugeMonitor() {

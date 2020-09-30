@@ -2,7 +2,6 @@ package model
 
 import (
     "errors"
-    "fmt"
     "github.com/hashicorp/terraform/helper/hashcode"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/prometheus/prompb"
@@ -66,7 +65,7 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
             continue
         }
         tsq.requestQueue[num] <- ts
-        receiveRequestCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num)}).Inc()
+        receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num)}).Inc()
         //AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("request producer")
     }
 }
@@ -101,7 +100,6 @@ func (tsq *TimeSeriesQueue) RequestConsumer(index int) {
             if err != nil {
                 RunLog.Error(err)
             }
-            fmt.Println("request consumer", err)
         }
     }
 }

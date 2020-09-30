@@ -128,7 +128,7 @@ func (collection *Aggregators) MonitorPack(index int) {
                 //fmt.Println(jobName," ",window," ",time.Now())
                 collection.whiteJobName[jobName].mtx.Lock()
                 pack := collection.whiteJobName[jobName].pack
-                pack.Print()
+               // pack.Print()
                 for _, val := range pack.data {
                     packStatusCounter.With(prometheus.Labels{"jobname": jobName, "flag": strconv.FormatBool(val.flag)}).Add(1)
                     if val.flag {
@@ -167,17 +167,20 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) err
         ts.Samples[0].Value = 0
     }
     hc := hashcode.String(metric)
-    collection.whiteJobName[jobName].mtx.Lock()
+
     if cache, ok := collection.whiteJobName[jobName]; ok {
+        collection.whiteJobName[jobName].mtx.Lock()
         incVal := collection.updatePrevCache(cache.prevCache, hc, &ts.Samples[0])
-        //cache.prevCache.Print()
+        cache.prevCache.Print()
         collection.updatePack(jobName, ts, incVal)
+
         mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate"}).Add(1)
+
     } else {
         tempTs := *ts
         TsQueue.MergeProducer(&tempTs, index)
         mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate"}).Add(1)
     }
-    collection.whiteJobName[jobName].mtx.Unlock()
+
     return nil
 }

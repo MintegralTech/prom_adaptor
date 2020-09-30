@@ -8,6 +8,6 @@ RUN go build cmd/server.go
 
 FROM  alpine:3.9.5
 WORKDIR /prom_adpter
-COPY conf conf
+#COPY conf conf
 COPY --from=0 /data/server /prom_adpter
 ENTRYPOINT ["./server"]

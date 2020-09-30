@@ -2,9 +2,11 @@ package model
 
 import (
     "errors"
+    "fmt"
     "github.com/hashicorp/terraform/helper/hashcode"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/prometheus/prompb"
+    "github.com/sirupsen/logrus"
     "strconv"
     "strings"
 )
@@ -53,6 +55,8 @@ func NewTimeSeriesQueue(buffer int, queuesNum int) *TimeSeriesQueue {
 
 func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
     //RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(), "add metrics count:": len(wreq.Timeseries)}).Info("request producer")
+    RunLog.WithFields(logrus.Fields{"request data len:": len(wreq.Timeseries)}).Info("request producer")
+
     for _, ts := range wreq.Timeseries {
         var err error
         //对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
@@ -70,11 +74,11 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
 func (tsq *TimeSeriesQueue) distributeData(ts *prompb.TimeSeries) (int, string, error){
     var err error
     metric := GetMetric(ts)
-    splitMetric := strings.Split(metric, "_")
     jobName, err := GetJobName(metric)
     if err != nil {
         return 0, "", err
     }
+    splitMetric := strings.Split(metric, "_")
     //去除metrics名称最后的bucket,sum, count等字段，确保histogram指标（bucket，sum, count)在同一个队列中，否则会导致histogram不准确
     metricName := strings.Join(splitMetric[:len(splitMetric)-1], "_")
     hashId := hashcode.String(metricName)
@@ -97,6 +101,7 @@ func (tsq *TimeSeriesQueue) RequestConsumer(index int) {
             if err != nil {
                 RunLog.Error(err)
             }
+            fmt.Println("request consumer", err)
         }
     }
 }
@@ -130,9 +135,10 @@ func (tsq *TimeSeriesQueue) MergeConsumer(index int) {
             }
             tsSlice = append(tsSlice, ts)
             if len(tsSlice) == Conf.shard || len(tsq.mergeQueue) == 0 {
-                if err := client.Write(tsSlice); err != nil {
+                if err := client.Write(tsSlice, index); err != nil {
                     ReqLog.Error(err)
                 }
+
                 tsSlice = []*prompb.TimeSeries{}
             }
         }

@@ -7,11 +7,16 @@ import (
     "github.com/prometheus/client_golang/prometheus"
 )
 
+const(
+    namespace = "adaptor"
+    subsystem = "aggregator"
+)
+
 var (
     tsQueueLengthGauge = prometheus.NewGaugeVec(
         prometheus.GaugeOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "queue_length",
             Help:      "timeSeries queue length",
         },
@@ -19,8 +24,8 @@ var (
     )
     mergeMetricCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "merge_count",
             Help:      "merge counter",
         },
@@ -28,8 +33,8 @@ var (
     )
     cacheDataLengthGauge = prometheus.NewGaugeVec(
         prometheus.GaugeOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "cache_data_length",
             Help:      "cache data length",
         },
@@ -37,28 +42,28 @@ var (
     )
     sendRequestCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "send_request_count",
             Help:      "send request counter",
         },
-        []string{"succ"},
+        []string{"succ", "queueIndex"},
     )
 
     receiveRequestCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "receive_request_count",
             Help:      "receive request counter",
         },
-        []string{"jobname"},
+        []string{"jobname", "queueIndex"},
     )
 
     metricsSizeCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "metrics_size",
             Help:      "data size",
         },
@@ -66,8 +71,8 @@ var (
     )
     packStatusCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
-            Namespace: "adapter",
-            Subsystem: "aggregator",
+            Namespace: namespace,
+            Subsystem: subsystem,
             Name:      "pack_status_count",
             Help:      "pack status count",
         },
@@ -97,5 +102,6 @@ func GaugeMonitor() {
         for jobName, agg := range Collection.whiteJobName {
             cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(agg.prevCache.data)))
         }
+
     }
 }

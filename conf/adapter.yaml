@@ -12,7 +12,7 @@ log:
     reqLogLevel: 4
 
 data:
-    remoteUrl: "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write"
+    remoteUrl: "http://influxdb.influxdb.svc.cluster.local:8086/api/v1/prom/write?db=aggregatortest&rp=one_month"
 
     whitelist: 
     - "dsp_dsp"

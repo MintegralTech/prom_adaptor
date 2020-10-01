@@ -2,10 +2,10 @@ package model
 
 import (
     "errors"
+    "fmt"
     "github.com/hashicorp/terraform/helper/hashcode"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/prometheus/prompb"
-    "github.com/sirupsen/logrus"
     "strconv"
     "strings"
 )
@@ -54,14 +54,14 @@ func NewTimeSeriesQueue(buffer int, queuesNum int) *TimeSeriesQueue {
 
 func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
     //RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(), "add metrics count:": len(wreq.Timeseries)}).Info("request producer")
-    RunLog.WithFields(logrus.Fields{"request data len:": len(wreq.Timeseries)}).Info("request producer")
+    //RunLog.WithFields(logrus.Fields{"request data len:": len(wreq.Timeseries)}).Info("request producer")
 
     for _, ts := range wreq.Timeseries {
         var err error
         //对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
         num, jobName, err := tsq.distributeData(ts)
         if err != nil{
-            RunLog.Error(err)
+            //RunLog.Error(err)
             continue
         }
         tsq.requestQueue[num] <- ts
@@ -98,7 +98,8 @@ func (tsq *TimeSeriesQueue) RequestConsumer(index int) {
         case ts = <-tsq.requestQueue[index]:
             err = Collection.MergeMetric(ts, index)
             if err != nil {
-                RunLog.Error(err)
+                //RunLog.Error(err)
+                fmt.Println("err", err)
             }
         }
     }
@@ -134,7 +135,8 @@ func (tsq *TimeSeriesQueue) MergeConsumer(index int) {
             tsSlice = append(tsSlice, ts)
             if len(tsSlice) == Conf.shard || len(tsq.mergeQueue) == 0 {
                 if err := client.Write(tsSlice, index); err != nil {
-                    ReqLog.Error(err)
+                    //ReqLog.Error(err)
+                    fmt.Println("queue:139 error:", err)
                 }
 
                 tsSlice = []*prompb.TimeSeries{}

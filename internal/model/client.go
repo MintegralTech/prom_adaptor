@@ -2,7 +2,6 @@ package model
 
 import (
     "bytes"
-    "github.com/sirupsen/logrus"
     "io"
     "io/ioutil"
     "net/http"
@@ -42,11 +41,11 @@ func NewClient(url string) *Client {
 }
 
 func (c *Client) Write(samples []*prompb.TimeSeries, index int) error {
-    if Conf.mode == "debug"{
-        for _, ts := range samples {
-            ReqLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("client send")
-        }
-    }
+    //if Conf.mode == "debug"{
+    //    for _, ts := range samples {
+    //        //ReqLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("client send")
+    //    }
+    //}
 
     var buf []byte
     req, _, err := buildWriteRequest(samples, buf)

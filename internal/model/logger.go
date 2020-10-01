@@ -20,6 +20,10 @@ func InitLog() {
     RunLog = NewLog(filepath.Join(home, Conf.logPath, "runtime"), Conf.runLogLevel, false)
     AccLog = NewLog(filepath.Join(home, Conf.logPath, "access"), Conf.accLogLevel, false)
     ReqLog = NewLog(filepath.Join(home, Conf.logPath, "request"), Conf.reqLogLevel, false)
+    //避免定义变量未使用而提示
+    _ = RunLog
+    _ = AccLog
+    _ = ReqLog
 }
 
 //NewLog generate logger

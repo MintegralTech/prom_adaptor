@@ -18,12 +18,12 @@ func Receive(c *gin.Context) error {
     }
     reqBuf, err := snappy.Decode(nil, compressed)
     if err != nil {
-        AccLog.Info("snappy Decode error")
+        //AccLog.Info("snappy Decode error")
         return BadRequest()
     }
     var req prompb.WriteRequest
     if err := proto.Unmarshal(reqBuf, &req); err != nil {
-        AccLog.Info("Unmarshal error")
+        //AccLog.Info("Unmarshal error")
         return BadRequest()
     }
     TsQueue.RequestProducer(&req)

@@ -11,7 +11,6 @@ import (
     "github.com/hashicorp/terraform/helper/hashcode"
     "github.com/prometheus/client_golang/prometheus"
     "github.com/prometheus/prometheus/prompb"
-    "github.com/sirupsen/logrus"
 )
 
 type TimeSeries struct {
@@ -75,7 +74,7 @@ func (collection *Aggregators) updatePrevCache(prevCache *cache, hc int, sample 
     if prevSample, ok := prevCache.data[hc]; ok {
         //fmt.Println(prevSample.Timestamp, sample.Timestamp)
         if prevSample.Timestamp > sample.Timestamp {
-            RunLog.WithFields(logrus.Fields{"prev timestamp":prevSample.Timestamp, "cur timestamp": sample.Timestamp}).Info("delay")
+            //RunLog.WithFields(logrus.Fields{"prev timestamp":prevSample.Timestamp, "cur timestamp": sample.Timestamp}).Info("delay")
             incVal = 0
             return incVal
         } else {
@@ -163,7 +162,7 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) err
         }
     }
     if math.IsNaN(ts.Samples[0].Value) {
-        RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
+        //RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
         ts.Samples[0].Value = 0
     }
     hc := hashcode.String(metric)

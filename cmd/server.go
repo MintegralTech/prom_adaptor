@@ -7,6 +7,7 @@ import (
     "github.com/prometheus/client_golang/prometheus/promhttp"
     "github.com/sirupsen/logrus"
     "net/http"
+    _ "net/http/pprof"
 )
 
 func main() {

@@ -79,7 +79,7 @@ func GaugeMonitor() {
         <-t.C
         tsQueueLengthGauge.With(prometheus.Labels{"type": "request"}).Set(float64(TsQueue.RequestLength()))
         tsQueueLengthGauge.With(prometheus.Labels{"type": "merge"}).Set(float64(TsQueue.MergeLength()))
-        for jobName, agg := range Collection.whiteJobName {
+        for jobName, agg := range Collection.aggregator {
             cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(agg.prevCache.data)))
         }
     }

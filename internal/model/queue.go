@@ -1,7 +1,7 @@
 package model
 
 import (
-    "github.com/sirupsen/logrus"
+    _ "github.com/sirupsen/logrus"
     "github.com/prometheus/prometheus/prompb"
     "github.com/prometheus/client_golang/prometheus"
 )
@@ -30,7 +30,7 @@ func NewTimeSeriesQueue(buffer int) *TimeSeriesQueue {
 }
 
 func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
-    RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(), "add metrics count:": len(wreq.Timeseries)}).Info("request producer")
+    //RunLog.WithFields(logrus.Fields{"queue length": tsq.RequestLength(), "add metrics count:": len(wreq.Timeseries)}).Info("request producer")
     for _, ts := range wreq.Timeseries {
         tsq.requestQueue <- ts
         //AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("request producer")

@@ -12,6 +12,7 @@ type Config struct {
     remoteUrl string
     windows   []int
     jobNames  []string
+    queuesNum int //队列的数量
 
     //log
     logPath     string
@@ -41,6 +42,7 @@ func NewConfig() *Config {
     config.windows = v.GetIntSlice("data.windows")
     config.jobNames = v.GetStringSlice("data.whitelist")
     config.remoteUrl = v.GetString("data.remoteUrl")
+    config.queuesNum = v.GetInt("runtime.queuesNum")
 
     //log
     config.logPath = v.GetString("log.logPath")

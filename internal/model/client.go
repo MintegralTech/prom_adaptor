@@ -2,6 +2,7 @@ package model
 
 import (
     "io"
+    "strconv"
     "time"
     "bytes"
     "io/ioutil"
@@ -40,12 +41,13 @@ func NewClient(url string) *Client {
     }
 }
 
-func (c *Client) Write(samples []*prompb.TimeSeries) error {
+func (c *Client) Write(samples []*prompb.TimeSeries, index int) error {
     var buf []byte
     req, _, err := buildWriteRequest(samples, buf)
     httpReq, err := http.NewRequest("POST", c.url, bytes.NewReader(req))
     if err != nil {
-        sendRequestCounter.With(prometheus.Labels{"succ": "false"}).Add(1)
+        sendMetricsNumCounter.With(prometheus.Labels{"succ": "false", "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(len(samples)))
+        sendRequestNumCounter.With(prometheus.Labels{"succ": "false", "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
         return err
     }
     httpReq.Header.Add("Content-Encoding", "snappy")
@@ -54,14 +56,16 @@ func (c *Client) Write(samples []*prompb.TimeSeries) error {
 
     httpResp, err := c.client.Do(httpReq)
     if err != nil {
-        sendRequestCounter.With(prometheus.Labels{"succ": "false"}).Add(1)
+        sendMetricsNumCounter.With(prometheus.Labels{"succ": "false", "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(len(samples)))
+        sendRequestNumCounter.With(prometheus.Labels{"succ": "false", "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
         return err
     }
     defer func() {
         io.Copy(ioutil.Discard, httpResp.Body)
         httpResp.Body.Close()
     }()
-    sendRequestCounter.With(prometheus.Labels{"succ": "true"}).Add(1)
+    sendMetricsNumCounter.With(prometheus.Labels{"succ": "true", "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(len(samples)))
+    sendRequestNumCounter.With(prometheus.Labels{"succ": "true", "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
     return nil
 }
 

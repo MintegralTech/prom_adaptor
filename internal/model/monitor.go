@@ -67,7 +67,7 @@ var (
             Name:      "receive_metrics_num_count",
             Help:      "receive metrics num counter",
         },
-        []string{"jobname", "queueIndex"},
+        []string{"jobname", "queueIndex", "type"},
     )
 
     metricsSizeCounter = prometheus.NewCounterVec(

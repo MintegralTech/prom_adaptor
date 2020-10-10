@@ -62,10 +62,11 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
         num, jobName, err := tsq.distributeData(ts)
         if err != nil{
             //RunLog.Error(err)
+            receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "fail"}).Inc()
             continue
         }
+        receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "succ"}).Inc()
         tsq.requestQueue[num] <- ts
-        receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num)}).Inc()
         //AccLog.WithFields(logrus.Fields{"metric": GetMetric(ts) + GetSample(ts)}).Info("request producer")
     }
 }

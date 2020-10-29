@@ -19,13 +19,16 @@ func DeleteLable(ts *prompb.TimeSeries, labelName string) *prompb.TimeSeries {
 	return &res
 }
 
-func GetMetric(ts *prompb.TimeSeries) string {
+func GetMetric(ts *prompb.TimeSeries) (metric string, isExistIpLabel bool) {
 	m := make(model.Metric, len(ts.Labels))
 	for _, l := range ts.Labels {
+		if strings.ToLower(l.Name) == "ip" {
+			isExistIpLabel = true
+		}
 		m[model.LabelName(l.Name)] = model.LabelValue(l.Value)
 	}
-	metric := fmt.Sprint(m)
-	return metric
+	metric = fmt.Sprint(m)
+	return metric, isExistIpLabel
 }
 
 func (c *cache) Print() {
@@ -37,7 +40,9 @@ func (c *cache) Print() {
 
 func (b *block) Print() {
 	for k, v := range b.data {
-		fmt.Println(k, GetMetric(v.ts)+GetSample(v.ts), v.flag)
+		metric, _ := GetMetric(v)
+		str := metric + GetSample(v)
+		fmt.Println(k,str)
 	}
 	fmt.Println("----------------------")
 }

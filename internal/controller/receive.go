@@ -26,6 +26,8 @@ func Receive(c *gin.Context) error {
         AccLog.Info("Unmarshal error")
         return BadRequest()
     }
-    TsQueue.RequestProducer(&req)
+    RequestIntoBuffer(&req)
     return nil
 }
+
+

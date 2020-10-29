@@ -1,11 +1,7 @@
 package model
 
 import (
-    "errors"
-    "fmt"
-    "math"
     "strconv"
-    "strings"
     "sync"
     "time"
 
@@ -14,39 +10,30 @@ import (
     _ "github.com/sirupsen/logrus"
 )
 
-// 聚合后的数据带上一个flag 用来标记本次自然时间窗口是否有聚合操作
-type TimeSeries struct {
-    ts   *prompb.TimeSeries
-    flag bool
-}
 
-// 存放上一采集的数据
-type cache struct {
-    data map[string]*prompb.Sample
-}
+type (
+    cache struct {
+        data map[string]*prompb.Sample
+    }
+    // 存放聚合后的数据
+    block struct {
+        data map[string]*prompb.TimeSeries
+    }
+    // 聚合器，与job绑定
+    Aggregator struct {
+        mtx     sync.Mutex
+        prevCache *cache
+        pack      *block
+    }
+    Aggregators struct {
+        jobNum     int
+        aggregator map[string]*Aggregator
+    }
+)
 
-// 存放聚合后的数据
-type block struct {
-    data map[string]*TimeSeries
-}
-
-// 聚合器，与job绑定
-type Aggregator struct {
-    jobName string
-    mtx     sync.Mutex
-
-    prevCache *cache
-    pack      *block
-}
-
-
-type Aggregators struct {
-    jobNum     int
-    aggregator map[string]*Aggregator
-}
 
 const (
-    INSTANCE = "instance"
+    INSTANCE  = "instance"
 )
 
 var Collection *Aggregators
@@ -57,9 +44,9 @@ func InitCollection() {
 
 func NewAggregator(jobName string) *Aggregator {
     return &Aggregator{
-        jobName:   jobName,
+        //jobName:   jobName,
         prevCache: &cache{data: make(map[string]*prompb.Sample)},
-        pack:      &block{data: make(map[string]*TimeSeries)},
+        pack:      &block{data: make(map[string]*prompb.TimeSeries)},
     }
 }
 
@@ -90,94 +77,87 @@ func (collection *Aggregators) updatePrevCache(prevCache *cache, metric string, 
     return incVal
 }
 
-func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, incVal float64) {
+func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries, incVal float64)  string {
     noInstTs := DeleteLable(ts, INSTANCE)
-    metric := GetMetric(noInstTs)
+    metric, _ := GetMetric(noInstTs)
     collection.aggregator[jobName].mtx.Lock()
     defer collection.aggregator[jobName].mtx.Unlock()
     pack := collection.aggregator[jobName].pack
     if _, ok := pack.data[metric]; !ok {
-        pack.data[metric] = &TimeSeries {
-             ts:   noInstTs,
-             flag: true,
-        }
+        pack.data[metric] = noInstTs
     } else {
-        if pack.data[metric].ts.Samples[0].Value + incVal >= 0 {
-            pack.data[metric].ts.Samples[0].Value += incVal
+        if pack.data[metric].Samples[0].Value + incVal >= 0 {
+            pack.data[metric].Samples[0].Value += incVal
         } else {
-            pack.data[metric].ts.Samples[0].Value = incVal
+            pack.data[metric].Samples[0].Value = incVal
         }
-        if pack.data[metric].ts.Samples[0].Timestamp < ts.Samples[0].Timestamp {
-            pack.data[metric].ts.Samples[0].Timestamp = ts.Samples[0].Timestamp
+        if pack.data[metric].Samples[0].Timestamp < ts.Samples[0].Timestamp {
+            pack.data[metric].Samples[0].Timestamp = ts.Samples[0].Timestamp
         }
-        pack.data[metric].flag = true
+
+        cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "pack"}).Set(float64(len(pack.data)))
     }
+    return metric
 }
 
-func (collection *Aggregators) PutIntoMergeQueue(index int) {
-    ch := make(chan struct{}, collection.jobNum)
-    for i := 0; i < collection.jobNum; i++ {
-        ch <- struct{}{}
+func (collection *Aggregators) PutMergedMetricsIntoSendQueue(index int) {
+    for jobName, val := range TsQueue.mergedLists[index].list {
+        for _, metric := range val {
+            collection.aggregator[jobName].mtx.Lock()
+            tempTs := *(collection.aggregator[jobName].pack.data[metric])
+            collection.aggregator[jobName].mtx.Unlock()
+            TsQueue.SendProducer(&tempTs, index)
+        }
+        dataInMergedWinSizeGauge.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(index)}).Set(float64(len(val)))
     }
-    for jobIndex := 0; ; jobIndex++ {
-        <-ch
-        jobName := Conf.jobNames[jobIndex]
-        window := Conf.windows[jobIndex]
-        go func() {
-            //TODO 目前是基于当前时间进行聚合，存在聚合服务重启时，存在突刺的问题，后续优化为基于第一个指标时间为基准，计算每个windows中的指标。
-            t := time.NewTicker(time.Second * time.Duration(window))
-            for {
-                <-t.C
-                collection.aggregator[jobName].mtx.Lock()
-                pack := collection.aggregator[jobName].pack
-                //pack.Print()
-                for _, val := range pack.data {
-                    packStatusCounter.With(prometheus.Labels{"jobname": jobName, "flag": strconv.FormatBool(val.flag)}).Add(1)
-                    if val.flag {
-                        val.flag = false
-                        tempTs := *(val.ts)
-                        TsQueue.MergeProducer(&tempTs, index)
+    TsQueue.mergedLists[index].ClearList() //清空记录
+}
+
+func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, jobName string, metric string, index int) {
+    res := TsQueue.mergeTimeWindow[index].CompareWithMergeTimeWindow(ts)
+    if  res == GreaterCurMergeWindow {
+        collection.PutMergedMetricsIntoSendQueue(index)
+        TsQueue.mergeTimeWindow[index].SetMergeTimeWindow(ts)
+    }else if res == LessCurMergeWindow {
+        // TODO 写metrics记录迟到的数据个数
+        delayedMertricCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
+    }
+    collection.aggregator[jobName].mtx.Lock()
+    cache := collection.aggregator[jobName]
+    incVal := collection.updatePrevCache(cache.prevCache, metric, &ts.Samples[0])
+    cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(cache.prevCache.data)))
+    collection.aggregator[jobName].mtx.Unlock()
+    mergedMt := collection.updatePack(jobName, ts, incVal)
+    // 记录当前聚合窗口中已经聚合的指标
+    TsQueue.mergedLists[index].list[jobName] = append(TsQueue.mergedLists[index].list[jobName], mergedMt)
+}
+
+//定时清除聚合缓存中大于配置时间的数据，避免内存持续增长
+func AggregatorCacheCleaner(){
+    t := time.NewTicker(time.Hour * time.Duration(Conf.GetCleanerTime()))
+    keepTime := int64(Conf.GetCleanerTime() * 3600 * 1e9) //纳秒
+    for{
+        <- t.C
+        curTime := int64(time.Now().Nanosecond())
+        for _, agg := range Collection.aggregator{
+            agg.mtx.Lock()
+            ch := make(chan struct{})
+            go func() {
+                for mtStr, ts := range agg.prevCache.data{
+                    if curTime > ts.Timestamp &&  curTime - ts.Timestamp >= keepTime {
+                        delete(agg.prevCache.data, mtStr)
                     }
                 }
-                collection.aggregator[jobName].mtx.Unlock()
-            }
-        }()
-    }
-}
+                ch <- struct{}{}
+            }()
 
-func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) error {
-    metric := GetMetric(ts)
-    jobName, err := GetJobName(metric)
-    if err != nil {
-        return err
-    }
-    //RunLog.WithFields(logrus.Fields{"jobName": jobName}).Info("jobName")
-    if len(ts.Samples) != 1 {
-        return errors.New(fmt.Sprintf("error sample size[%d]", len(ts.Samples)))
-    }
-    //带ip的label直接放到请求队列, 不做聚合
-    for _, l := range ts.Labels {
-        if strings.ToLower(l.Name) == "ip" {
-            tempTs := *ts
-            TsQueue.MergeProducer(&tempTs,  index)
-            mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Add(1)
-            return nil
+            for mtStr, ts := range agg.pack.data{
+                if curTime > ts.Samples[0].Timestamp &&  curTime - ts.Samples[0].Timestamp >= keepTime {
+                    delete(agg.prevCache.data, mtStr)
+                }
+            }
+            <- ch
+            agg.mtx.Unlock()
         }
     }
-    if math.IsNaN(ts.Samples[0].Value) {
-        //RunLog.WithFields(logrus.Fields{"ts": metric}).Info("NaN")
-        ts.Samples[0].Value = 0
-    }
-    if cache, ok := collection.aggregator[jobName]; ok {
-        collection.aggregator[jobName].mtx.Lock()
-        incVal := collection.updatePrevCache(cache.prevCache, metric, &ts.Samples[0])
-        collection.aggregator[jobName].mtx.Unlock()
-        collection.updatePack(jobName, ts, incVal)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Add(1)
-    } else {
-        tempTs := *ts
-        TsQueue.MergeProducer(&tempTs, index)
-        mergeMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "without-aggregate", "queueIndex":"queue-" + strconv.Itoa(index)}).Add(1)
-    }
-    return nil
 }

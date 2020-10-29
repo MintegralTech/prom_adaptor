@@ -5,6 +5,8 @@ import (
 )
 
 func init() {
+    InitMonitor()
+    fmt.Println("init monitor")
     InitConfig()
     fmt.Println(Conf)
     InitLog()
@@ -15,14 +17,23 @@ func init() {
     fmt.Println("init queue")
     InitClient()
     fmt.Println("init client")
-    InitMonitor()
-    fmt.Println("init monitor")
 
-    for i := 0; i < Conf.queuesNum; i++{
-        go TsQueue.RequestConsumer(i)
-        go TsQueue.MergeConsumer(i)
-        go Collection.PutIntoMergeQueue(i)
+
+    InitRequestController()
+    fmt.Println("init request controller")
+    go MonitorRequestBuffer()
+    fmt.Println("init MonitorRequestBuffer")
+    go MonitorRequestBufferTimer()
+    fmt.Println("init MonitorRequestBufferTimer")
+
+
+    for i := 0; i < Conf.workersNum; i++{
+        go TsQueue.MergeQueueConsumer(i)
+        go TsQueue.SendConsumer(i)
     }
-    go GaugeMonitor()
+
+    go AggregatorCacheCleaner()
+    fmt.Println("init AggregatorCacheCleaner")
+
     fmt.Println("init all done")
 }

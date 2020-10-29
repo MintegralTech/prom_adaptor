@@ -87,7 +87,7 @@ func buildWriteRequest(samples []*prompb.TimeSeries, buf []byte) ([]byte, int64,
     }
 
     // snappy uses len() to see if it needs to allocate a new slice. Make the
-    // buffer as long as possible.
+    // requestBuffSize as long as possible.
     if buf != nil {
         buf = buf[0:cap(buf)]
     }

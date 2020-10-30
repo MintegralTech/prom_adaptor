@@ -109,6 +109,15 @@ var (
         },
         []string{"jobname"},
     )
+    cacheDeletedNumGauge = prometheus.NewGaugeVec(
+        prometheus.GaugeOpts{
+            Namespace: "adaptor",
+            Subsystem: "aggregator",
+            Name:      "cacheDeletedNum",
+            Help:      "cache map deleted metrics nums",
+        },
+        []string{"jobname", "type"},
+    )
 )
 
 func InitMonitor() {
@@ -126,6 +135,7 @@ func InitMonitor() {
     prometheus.MustRegister(triggerBufferConsumerCounter)
     prometheus.MustRegister(dataInMergedWinSizeGauge)
     prometheus.MustRegister(cacheDataLengthGauge)
+    prometheus.MustRegister(cacheDeletedNumGauge)
 
     // send相关
     prometheus.MustRegister(sendRequestNumCounter)

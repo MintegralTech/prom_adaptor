@@ -30,15 +30,14 @@ func InitRequestController(){
 
 
 func RequestIntoBuffer(wreq *prompb.WriteRequest) {
-	//首先要保证设置的requestbuffer的大小一定大于一次request发送过来的数据量（prometheus每次默认最大发送500条metrics）
-	//然后 当当前缓存的余量不够存放一批request的数据时，启动requestconsumer开始消费requestbuffer。
+
 	// TODO 添加metrics，记录每次的request发送过来的数据量
 	batchSize := Conf.GetBatchSize()
 	curSize := 0
 	for _, ts := range wreq.Timeseries {
+		curSize = len(RequestBuffer)
 		if curSize >= batchSize {
 			RequestBufferConsumerFlag <- FullCap
-			curSize = 0
 		}
 		//对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
 		num, jobName, isMergeFlag, err := TsQueue.DistributeData(ts)
@@ -47,11 +46,10 @@ func RequestIntoBuffer(wreq *prompb.WriteRequest) {
 			continue
 		}
 		receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "succ"}).Inc()
-		requestBufferLengthGauge.With(prometheus.Labels{"type": "realLength"}).Set(float64(len(RequestBuffer)))
+		requestBufferLengthGauge.With(prometheus.Labels{"type": "realLength"}).Set(float64(curSize))
 		// 需要聚合的数据入缓存，其他直接入发送队列透传
 		if isMergeFlag {
 			RequestBuffer <- ts
-			curSize++
 			originMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "need-aggregate", "queueIndex":"queue-" + strconv.Itoa(num)}).Inc()
 		}else{
 			TsQueue.SendProducer(ts, num)
@@ -84,11 +82,13 @@ func MonitorRequestBufferTimer(){
 func MonitorRequestBuffer(){
 	for{
 		flag := <-RequestBufferConsumerFlag
-		if flag == FullCap{
+		if flag == FullCap && len(RequestBuffer) >= Conf.GetBatchSize(){
 			triggerBufferConsumerCounter.With(prometheus.Labels{"type": "FullCap"}).Inc()
 
-		}else{
+		}else if flag == TimeOut {
 			triggerBufferConsumerCounter.With(prometheus.Labels{"type": "TimeOut"}).Inc()
+		}else{
+			continue
 		}
 		RwMtx.Lock()
 		LastFlagTimeStamp = time.Now().Unix()

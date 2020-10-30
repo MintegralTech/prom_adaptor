@@ -85,9 +85,9 @@ func (tsq *TimeSeriesQueue) RequestBufferConsumer() {
 
     for i := 0; i < batchSize; i++ {
         ts := <- RequestBuffer
-        if Conf.GetMode() == "debug"{
-            ReqLog.Println(ts)
-        }
+        //if Conf.GetMode() == "debug"{
+        //    ReqLog.Println(ts)
+        //}
 
         var err error
         //对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
@@ -97,7 +97,6 @@ func (tsq *TimeSeriesQueue) RequestBufferConsumer() {
             continue
         }
 
-        tsQueueLengthGauge.With(prometheus.Labels{"type": "merge", "queueIndex": "queue-" + strconv.Itoa(num)}).Set(float64(len(tsq.mergeQueue[num])))
         tsq.mergeQueue[num] <- ts
         mergeQueueLen[num] ++
     }
@@ -136,9 +135,12 @@ func (tsq *TimeSeriesQueue) MergeQueueConsumer(index int) {
         select {
         case queueLength := <-MergeQueueConsumerLength[index]:
             sortedQueue := make([]*prompb.TimeSeries, queueLength)
-            if len(tsq.mergeQueue[index]) <= 0 {
+            l := len(tsq.mergeQueue[index])
+            tsQueueLengthGauge.With(prometheus.Labels{"type": "merge", "queueIndex": "queue-" + strconv.Itoa(index)}).Set(float64(l))
+            if l <= 0 {
                 continue
             }
+
             // 读queueLength个数据，并校验数据格式正确性
             for i := 0; i < queueLength; i++ {
                 ts := <- tsq.mergeQueue[index]

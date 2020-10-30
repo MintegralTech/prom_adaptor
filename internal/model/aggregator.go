@@ -94,9 +94,8 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
         if pack.data[metric].Samples[0].Timestamp < ts.Samples[0].Timestamp {
             pack.data[metric].Samples[0].Timestamp = ts.Samples[0].Timestamp
         }
-
-        cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "pack"}).Set(float64(len(pack.data)))
     }
+    cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "pack"}).Set(float64(len(pack.data)))
     return metric
 }
 
@@ -139,13 +138,14 @@ func AggregatorCacheCleaner(){
     for{
         <- t.C
         curTime := int64(time.Now().Nanosecond())
-        for _, agg := range Collection.aggregator{
+        for jobName, agg := range Collection.aggregator{
             agg.mtx.Lock()
             ch := make(chan struct{})
             go func() {
                 for mtStr, ts := range agg.prevCache.data{
                     if curTime > ts.Timestamp &&  curTime - ts.Timestamp >= keepTime {
                         delete(agg.prevCache.data, mtStr)
+                        cacheDeletedNumGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Inc()
                     }
                 }
                 ch <- struct{}{}
@@ -154,6 +154,7 @@ func AggregatorCacheCleaner(){
             for mtStr, ts := range agg.pack.data{
                 if curTime > ts.Samples[0].Timestamp &&  curTime - ts.Samples[0].Timestamp >= keepTime {
                     delete(agg.prevCache.data, mtStr)
+                    cacheDeletedNumGauge.With(prometheus.Labels{"jobname": jobName, "type": "pack"}).Inc()
                 }
             }
             <- ch

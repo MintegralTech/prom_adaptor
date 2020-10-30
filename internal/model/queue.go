@@ -149,7 +149,7 @@ func (tsq *TimeSeriesQueue) MergeQueueConsumer(index int) {
                 if math.IsNaN(ts.Samples[0].Value) {
                     ts.Samples[0].Value = 0
                 }
-                sortedQueue = append(sortedQueue, ts)
+                sortedQueue[i] = ts
             }
 
             //升序

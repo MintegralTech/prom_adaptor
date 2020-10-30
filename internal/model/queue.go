@@ -187,7 +187,6 @@ func (tsq *TimeSeriesQueue) SendConsumer(index int) {
     for {
         select {
         case ts = <-tsq.sendQueue[index]:
-            tsQueueLengthGauge.With(prometheus.Labels{"type": "send", "queueIndex": "queue-" + strconv.Itoa(index)}).Set(float64(len(tsq.sendQueue[index])))
             // debug
             if Conf.GetMode() == "debug" {
                 for i, l := range ts.Labels {

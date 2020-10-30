@@ -2,6 +2,8 @@ package model
 
 import (
     "github.com/prometheus/client_golang/prometheus"
+    "strconv"
+    "time"
 )
 
 
@@ -142,4 +144,15 @@ func InitMonitor() {
     prometheus.MustRegister(sendMetricsNumCounter)
     prometheus.MustRegister(metricsTotalSizeCounter)
 
+}
+
+
+func GaugeMonitor() {
+    t := time.NewTicker(time.Second * time.Duration(5))
+    for {
+        <-t.C
+        for i := 0; i < Conf.GetWorkersNum(); i++{
+            tsQueueLengthGauge.With(prometheus.Labels{"type": "send", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(len(TsQueue.sendQueue[i])))
+        }
+    }
 }

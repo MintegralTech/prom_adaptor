@@ -36,11 +36,11 @@ var (
 )
 
 const(
-    defaultRequestBuffSize = 100000 //默认队列长度
+    defaultRequestBuffSize = 1000 //默认队列长度
     defaultWorkersNum = 2 //默认队列个数
     defaultFreshRequestQueuePeriod = 120
     defaultCleanerTime = 24 //默认 删除24小时内未更新的缓存数据, 保持的最短时间为3小时
-    defaultBatchSize = 1000
+    defaultBatchSize = 100
 )
 
 

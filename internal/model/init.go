@@ -34,6 +34,6 @@ func init() {
 
     go AggregatorCacheCleaner()
     fmt.Println("init AggregatorCacheCleaner")
-
+    go GaugeMonitor()
     fmt.Println("init all done")
 }

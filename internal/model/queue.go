@@ -10,7 +10,6 @@ import (
     "math"
     "sort"
     "strconv"
-    "strings"
 )
 
 type (
@@ -108,13 +107,15 @@ func (tsq *TimeSeriesQueue) DistributeData(ts *prompb.TimeSeries) (int, string, 
     var err error
     isMergeFlag := false
     metric, isExistIpLabel := GetMetric(ts)
-    jobName, err := GetJobName(metric)
+    jobName, originMetricName, err := GetJobName(metric)
     if err != nil {
         return 0, "", false, err
     }
-    splitMetric := strings.Split(metric, "_")
     //去除metrics名称最后的bucket,sum, count等字段，确保histogram指标（bucket，sum, count)在同一个队列中，否则会导致histogram不准确
-    metricName := strings.Join(splitMetric[:len(splitMetric)-1], "_")
+    metricName, err := GetMetricsName(originMetricName)
+    if err != nil {
+        return 0, "", false, err
+    }
     hashId := hashcode.String(metricName)
     remainder := hashId % tsq.workersNum
     if 0 > remainder || tsq.workersNum <= remainder{
@@ -163,7 +164,7 @@ func (tsq *TimeSeriesQueue) MergeQueueConsumer(index int) {
 
             for _, v := range sortedQueue {
                 metric, _ := GetMetric(v)
-                jobName, err := GetJobName(metric)
+                jobName, _, err := GetJobName(metric)
                 if err != nil {
                     continue
                 }

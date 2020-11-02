@@ -147,7 +147,7 @@ func (collection *Aggregators) PutIntoMergeQueue(index int) {
 
 func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, index int) error {
     metric := GetMetric(ts)
-    jobName, err := GetJobName(metric)
+    jobName, _, err := GetJobName(metric)
     if err != nil {
         return err
     }

@@ -3,11 +3,10 @@ package model
 import (
     "errors"
     "github.com/hashicorp/terraform/helper/hashcode"
-    _ "github.com/sirupsen/logrus"
-    "github.com/prometheus/prometheus/prompb"
     "github.com/prometheus/client_golang/prometheus"
+    "github.com/prometheus/prometheus/prompb"
+    _ "github.com/sirupsen/logrus"
     "strconv"
-    "strings"
 )
 
 type TimeSeriesQueue struct {
@@ -72,13 +71,15 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
 func (tsq *TimeSeriesQueue) distributeData(ts *prompb.TimeSeries) (int, string, error){
     var err error
     metric := GetMetric(ts)
-    jobName, err := GetJobName(metric)
+    jobName, originMetricName, err := GetJobName(metric)
     if err != nil {
         return 0, "", err
     }
-    splitMetric := strings.Split(metric, "_")
     //去除metrics名称最后的bucket,sum, count等字段，确保histogram指标（bucket，sum, count)在同一个队列中，否则会导致histogram不准确
-    metricName := strings.Join(splitMetric[:len(splitMetric)-1], "_")
+    metricName, err := GetMetricsName(originMetricName)
+    if err != nil {
+        return 0, "", err
+    }
     hashId := hashcode.String(metricName)
     remainder := hashId % tsq.queuesNum
     if 0 > remainder || tsq.queuesNum <= remainder{

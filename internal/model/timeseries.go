@@ -80,9 +80,9 @@ func GetMetricsName(originMetricName string) (string, error) {
 	if l == 1 {
 		metricsName = strings.ToLower(fields[0])
 	} else if fields[l-1] == "sum" || fields[l-1] == "bucket" || fields[l-1] == "count" {
-		metricsName = strings.ToLower(strings.TrimLeft(originMetricName, fields[l-1]))
+		metricsName = strings.ToLower(strings.TrimRight(originMetricName, fields[l-1]))
 	} else {
-		metricsName = originMetricName
+		metricsName = strings.ToLower(originMetricName)
 	}
 	return metricsName, nil
 }

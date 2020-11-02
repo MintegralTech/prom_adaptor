@@ -59,6 +59,7 @@ func (tsq *TimeSeriesQueue) RequestProducer(wreq *prompb.WriteRequest) {
         var err error
         //对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
         num, jobName, err := tsq.distributeData(ts)
+
         if err != nil{
             receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "fail"}).Inc()
             continue

@@ -4,6 +4,7 @@ import (
     "github.com/prometheus/client_golang/prometheus"
     "github.com/sirupsen/logrus"
     "github.com/spf13/viper"
+    "strings"
 )
 
 type Config struct {
@@ -38,9 +39,9 @@ var (
 const(
     defaultRequestBuffSize = 1000 //默认队列长度
     defaultWorkersNum = 2 //默认队列个数
-    defaultFreshRequestQueuePeriod = 120
+    defaultFreshRequestQueuePeriod = 20
     defaultCleanerTime = 24 //默认 删除24小时内未更新的缓存数据, 保持的最短时间为3小时
-    defaultBatchSize = 100
+    defaultBatchSize = 10
 )
 
 
@@ -67,6 +68,10 @@ func NewConfig() *Config {
     config.runLogLevel = logrus.Level(v.GetInt("log.runLogLevel"))
     config.accLogLevel = logrus.Level(v.GetInt("log.accLogLevel"))
     config.reqLogLevel = logrus.Level(v.GetInt("log.reqLogLevel"))
+
+    for i, v := range config.jobNames {
+        config.jobNames[i] = strings.ToLower(v)
+    }
 
     if config.requestBuffSize < defaultRequestBuffSize {
         config.requestBuffSize = defaultRequestBuffSize

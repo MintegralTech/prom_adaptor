@@ -100,6 +100,10 @@ func (tsq *TimeSeriesQueue) RequestBufferConsumer() {
         mergeQueueLen[num] ++
     }
     for i := 0; i < len(mergeQueueLen); i++ {
+        //没有得到数据的队列不唤醒
+        if mergeQueueLen[i] == 0 {
+            continue
+        }
         MergeQueueConsumerLength[i] <- mergeQueueLen[i]
     }
 }

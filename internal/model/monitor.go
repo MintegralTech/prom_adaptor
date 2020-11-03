@@ -1,28 +1,67 @@
 package model
 
 import (
+    "github.com/prometheus/client_golang/prometheus"
     "strconv"
     "time"
-
-    "github.com/prometheus/client_golang/prometheus"
 )
 
 
 var (
+    requestBufferLengthGauge = prometheus.NewGaugeVec(
+        prometheus.GaugeOpts{
+            Namespace: "adaptor",
+            Subsystem: "aggregator",
+            Name:      "requestBufferLength",
+            Help:      "timeSeries queue length (Gauge)",
+        },
+        []string{"type"},
+    )
+    triggerBufferConsumerCounter = prometheus.NewCounterVec(
+        prometheus.CounterOpts{
+            Namespace: "adaptor",
+            Subsystem: "aggregator",
+            Name:      "triggerBufferConsumer_counter",
+            Help:      "trigger requestBuffSize consumer (Counter)",
+        },
+        []string{"type"},
+    )
+    //延迟发过来的数据 -----------
+    delayedMertricCounter = prometheus.NewCounterVec(
+        prometheus.CounterOpts{
+            Namespace: "adaptor",
+            Subsystem: "aggregator",
+            Name:      "delayedMetric_counter",
+            Help:      "delayed metric (Counter)",
+        },
+        []string{"jobname", "queueIndex"},
+    )
+
+    dataInMergedWinSizeGauge = prometheus.NewGaugeVec(
+        prometheus.GaugeOpts{
+            Namespace: "adaptor",
+            Subsystem: "aggregator",
+            Name:      "dataInMergedWinSize",
+            Help:      "date in merged windows size (gauge)",
+        },
+        []string{"jobname", "queueIndex"},
+    )
+
+
     tsQueueLengthGauge = prometheus.NewGaugeVec(
         prometheus.GaugeOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "queue_length",
+            Name:      "queueSize",
             Help:      "timeSeries queue length",
         },
         []string{"type", "queueIndex"},
     )
-    mergeMetricCounter = prometheus.NewCounterVec(
+    originMetricCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "merge_count",
+            Name:      "originMetric_counter",
             Help:      "merge counter",
         },
         []string{"jobname", "type", "queueIndex"},
@@ -31,7 +70,7 @@ var (
         prometheus.GaugeOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "cache_data_length",
+            Name:      "cacheDataLength",
             Help:      "cache data length",
         },
         []string{"jobname", "type"},
@@ -40,72 +79,80 @@ var (
         prometheus.CounterOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "send_metrics_num_count",
+            Name:      "sendMetricsNum_counter",
             Help:      "send metrics num counter",
         },
-        []string{"succ", "queueIndex"},
+        []string{"status", "queueIndex"},
     )
     sendRequestNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "send_request_num_count",
+            Name:      "sendRequestNum_counter",
             Help:      "send request num counter",
         },
-        []string{"succ", "queueIndex"},
+        []string{"status", "queueIndex"},
     )
     receiveMetricsNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "receive_metrics_num_count",
+            Name:      "receiveMetricsNum_counter",
             Help:      "receive metrics num counter",
         },
         []string{"jobname", "queueIndex", "type"},
     )
-    metricsSizeCounter = prometheus.NewCounterVec(
+    metricsTotalSizeCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "metrics_size",
-            Help:      "data size",
+            Name:      "metricsTotalSize_counter",
+            Help:      "data total size",
         },
         []string{"jobname"},
     )
-    packStatusCounter = prometheus.NewCounterVec(
-        prometheus.CounterOpts{
+    cacheDeletedNumGauge = prometheus.NewGaugeVec(
+        prometheus.GaugeOpts{
             Namespace: "adaptor",
             Subsystem: "aggregator",
-            Name:      "pack_status_count",
-            Help:      "pack status count",
+            Name:      "cacheDeletedNum",
+            Help:      "cache map deleted metrics nums",
         },
-        []string{"jobname","flag"},
+        []string{"jobname", "type"},
     )
 )
 
 func InitMonitor() {
     // Metrics have to be registered to be exposed:
-    prometheus.MustRegister(tsQueueLengthGauge)
-    prometheus.MustRegister(mergeMetricCounter)
-    prometheus.MustRegister(cacheDataLengthGauge)
-    prometheus.MustRegister(sendRequestNumCounter)
-    prometheus.MustRegister(metricsSizeCounter)
-    prometheus.MustRegister(packStatusCounter)
-    prometheus.MustRegister(sendMetricsNumCounter)
+    // request相关
+    prometheus.MustRegister(requestBufferLengthGauge)
+    prometheus.MustRegister(delayedMertricCounter)
     prometheus.MustRegister(receiveMetricsNumCounter)
+    prometheus.MustRegister(originMetricCounter)
+
+    // 缓存队列相关
+    prometheus.MustRegister(tsQueueLengthGauge)
+
+    // 聚合相关
+    prometheus.MustRegister(triggerBufferConsumerCounter)
+    prometheus.MustRegister(dataInMergedWinSizeGauge)
+    prometheus.MustRegister(cacheDataLengthGauge)
+    prometheus.MustRegister(cacheDeletedNumGauge)
+
+    // send相关
+    prometheus.MustRegister(sendRequestNumCounter)
+    prometheus.MustRegister(sendMetricsNumCounter)
+    prometheus.MustRegister(metricsTotalSizeCounter)
+
 }
 
+
 func GaugeMonitor() {
-    t := time.NewTicker(time.Second * time.Duration(15))
+    t := time.NewTicker(time.Second * time.Duration(5))
     for {
         <-t.C
-        for i := 0; i < Conf.queuesNum; i++{
-            tsQueueLengthGauge.With(prometheus.Labels{"type": "request", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(TsQueue.RequestLength(i)))
-            tsQueueLengthGauge.With(prometheus.Labels{"type": "merge", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(TsQueue.MergeLength(i)))
-        }
-
-        for jobName, agg := range Collection.aggregator {
-            cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(agg.prevCache.data)))
+        for i := 0; i < Conf.GetWorkersNum(); i++{
+            tsQueueLengthGauge.With(prometheus.Labels{"type": "send", "queueIndex": "queue-" + strconv.Itoa(i)}).Set(float64(len(TsQueue.sendQueue[i])))
         }
     }
 }

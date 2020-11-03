@@ -19,13 +19,16 @@ func DeleteLable(ts *prompb.TimeSeries, labelName string) *prompb.TimeSeries {
 	return &res
 }
 
-func GetMetric(ts *prompb.TimeSeries) string {
+func GetMetric(ts *prompb.TimeSeries) (metric string, isExistIpLabel bool) {
 	m := make(model.Metric, len(ts.Labels))
 	for _, l := range ts.Labels {
+		if strings.ToLower(l.Name) == "ip" {
+			isExistIpLabel = true
+		}
 		m[model.LabelName(l.Name)] = model.LabelValue(l.Value)
 	}
-	metric := fmt.Sprint(m)
-	return metric
+	metric = fmt.Sprint(m)
+	return metric, isExistIpLabel
 }
 
 func (c *cache) Print() {
@@ -37,7 +40,9 @@ func (c *cache) Print() {
 
 func (b *block) Print() {
 	for k, v := range b.data {
-		fmt.Println(k, GetMetric(v.ts)+GetSample(v.ts), v.flag)
+		metric, _ := GetMetric(v)
+		str := metric + GetSample(v)
+		fmt.Println(k,str)
 	}
 	fmt.Println("----------------------")
 }
@@ -50,21 +55,39 @@ func GetSample(ts *prompb.TimeSeries) string {
 	return sample
 }
 
-func GetJobName(metric string) (string, error) {
+func GetJobName(metric string) (string, string, error) {
 	var jobName string
 	temp := strings.Split(metric, "{")
 	if len(temp) < 1 {
-		return "", errors.New("get metricsName error")
+		return "", "", errors.New("get metricsName error")
 	}
 	metricName := temp[0]
 	fields := strings.Split(metricName, "_")
 	if len(fields) <= 0 {
-		return "", errors.New("get jobName error")
+		return "", "", errors.New("get jobName error")
 	}
 	if len(fields) == 1 {
 		jobName = strings.ToLower(fields[0])
 	} else {
 		jobName = strings.ToLower(fields[0] + "_" + fields[1])
 	}
-	return jobName, nil
+	return jobName, metricName, nil
+}
+
+func GetMetricsName(originMetricName string) (string, error) {
+	var metricsName string
+
+	fields := strings.Split(originMetricName, "_")
+	if len(fields) <= 0 {
+		return "", errors.New("get jobName error")
+	}
+	l := len(fields)
+	if l == 1 {
+		metricsName = strings.ToLower(fields[0])
+	} else if fields[l-1] == "sum" || fields[l-1] == "bucket" || fields[l-1] == "count" {
+		metricsName = strings.ToLower(strings.TrimRight(originMetricName, fields[l-1]))
+	} else {
+		metricsName = strings.ToLower(originMetricName)
+	}
+	return metricsName, nil
 }

@@ -1,8 +1,13 @@
 runtime:
-    buffer: 2000000
+    batchSize: 2000
+    queueSize: 100000
     shard:  35
     mode: "prod" # debug mode: metrics name will add a aggregator suffix
-    queuesNum: 4 # 消费队列数量
+    workersNum: 4 # 消费队列数量
+    freshRequestQueuePeriod: 120 #消费requestqueue队列中数据的时间周期， 单位秒
+    cleanerTime: 6 #自动清除6h以前的缓存数据
+
+
 
 log:
     #{0:panic,1:fatal,2:error,3:warn,4:info,5:debug,6:trace}
@@ -19,10 +24,7 @@ data:
     - "dsp_impression"
     - "voyager_pioneer"
     - "adserver_as"
-    #- "prometheus_tsdb"
-    #- "test_counter"
-    #- "test_gauge"
-    #- "test_histogram"
+
     windows:
     - 120
     - 120

@@ -4,7 +4,7 @@ runtime:
     shard:  35
     mode: "prod" # debug mode: metrics name will add a aggregator suffix
     workersNum: 4 # 消费队列数量
-    freshRequestQueuePeriod: 120 #消费requestqueue队列中数据的时间周期， 单位秒
+    freshRequestQueuePeriod: 60 #消费requestqueue队列中数据的时间周期， 单位秒
     cleanerTime: 6 #自动清除6h以前的缓存数据
 
 
@@ -19,15 +19,11 @@ log:
 data:
     remoteUrl: "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write"
 
-    whitelist: 
-    - "dsp_dsp"
-    - "dsp_impression"
-    - "voyager_pioneer"
-    - "adserver_as"
+    whitelist:
+    - "Voyager_Juno"
+    //- "counter_http"
 
     windows:
-    - 120
-    - 120
-    - 120
-    - 120
-    #- 10
+    - 30
+    - 30
+

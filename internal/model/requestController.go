@@ -8,26 +8,25 @@ import (
 	"sync"
 	"time"
 )
-var (
-	RequestBuffer chan *prompb.TimeSeries
-	RequestBufferConsumerFlag chan int
-	LastFlagTimeStamp int64 //上一次flag chan中的时间戳
-	RwMtx sync.RWMutex
-)
 
+var (
+	RequestBuffer             chan *prompb.TimeSeries
+	RequestBufferConsumerFlag chan int
+	LastFlagTimeStamp         int64 //上一次flag chan中的时间戳
+	RwMtx                     sync.RWMutex
+)
 
 const (
 	requestBufferConsumerFlagLength = 10
-	FullCap = 1 //标识request buffer满了
-	TimeOut = 2 //标识定时器时间到
+	FullCap                         = 1 //标识request buffer满了
+	TimeOut                         = 2 //标识定时器时间到
 )
 
-func InitRequestController(){
+func InitRequestController() {
 	RequestBuffer = make(chan *prompb.TimeSeries, Conf.GetRequestBuffCapacity())
 	RequestBufferConsumerFlag = make(chan int, requestBufferConsumerFlagLength)
 	LastFlagTimeStamp = 0
 }
-
 
 func RequestIntoBuffer(wreq *prompb.WriteRequest) {
 
@@ -41,36 +40,37 @@ func RequestIntoBuffer(wreq *prompb.WriteRequest) {
 		}
 		//对metrics名称hash，得到hashid 取余队列个数，按照其结果进行分发数据
 		num, jobName, isMergeFlag, err := TsQueue.DistributeData(ts)
-		if err != nil{
+		if err != nil {
 			receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "fail"}).Inc()
 			continue
 		}
 		receiveMetricsNumCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(num), "type": "succ"}).Inc()
 		requestBufferLengthGauge.With(prometheus.Labels{"type": "realLength"}).Set(float64(curSize))
+
 		// 需要聚合的数据入缓存，其他直接入发送队列透传
 		if isMergeFlag {
 			RequestBuffer <- ts
-			originMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "need-aggregate", "queueIndex":"queue-" + strconv.Itoa(num)}).Inc()
-		}else{
+			originMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "need-aggregate", "queueIndex": "queue-" + strconv.Itoa(num)}).Inc()
+		} else {
 			TsQueue.SendProducer(ts, num)
-			originMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "not-need-aggregate", "queueIndex":"queue-" + strconv.Itoa(num)}).Inc()
+			//fmt.Println("receive=false", jobName)
+			originMetricCounter.With(prometheus.Labels{"jobname": jobName, "type": "not-need-aggregate", "queueIndex": "queue-" + strconv.Itoa(num)}).Inc()
 		}
 	}
 }
 
-
-func MonitorRequestBufferTimer(){
+func MonitorRequestBufferTimer() {
 	//每隔N秒，读走一次request buffer中的数据
-	fmt.Println("d=", Conf.GetFreshRequestQueuePeriod())
+	fmt.Println("fresh time=", Conf.GetFreshRequestQueuePeriod())
 	t := time.NewTicker(time.Second * time.Duration(Conf.GetFreshRequestQueuePeriod()))
-	for{
+	for {
 		<-t.C
 		//还有数据没有消费完
 		curTime := time.Now().Unix()
 		RwMtx.RLock()
 		period := curTime - LastFlagTimeStamp
 		RwMtx.RUnlock()
-		if  period < Conf.GetFreshRequestQueuePeriod() || len(RequestBufferConsumerFlag) > 0 {
+		if period < Conf.GetFreshRequestQueuePeriod() || len(RequestBufferConsumerFlag) > 0 {
 			continue
 		}
 		RequestBufferConsumerFlag <- TimeOut
@@ -78,16 +78,16 @@ func MonitorRequestBufferTimer(){
 	}
 }
 
-
-func MonitorRequestBuffer(){
-	for{
+func MonitorRequestBuffer() {
+	for {
 		flag := <-RequestBufferConsumerFlag
-		if flag == FullCap && len(RequestBuffer) >= Conf.GetBatchSize(){
+		l := len(RequestBuffer)
+		if flag == FullCap && l >= Conf.GetBatchSize() {
 			triggerBufferConsumerCounter.With(prometheus.Labels{"type": "FullCap"}).Inc()
 
-		}else if flag == TimeOut {
+		} else if flag == TimeOut && l > 0 {
 			triggerBufferConsumerCounter.With(prometheus.Labels{"type": "TimeOut"}).Inc()
-		}else{
+		} else {
 			continue
 		}
 		RwMtx.Lock()

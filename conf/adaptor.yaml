@@ -18,12 +18,9 @@ log:
 
 data:
     remoteUrl: "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write"
-
+    windows: 30
     whitelist:
     - "Voyager_Juno"
-    //- "counter_http"
 
-    windows:
-    - 30
-    - 30
+
 

@@ -42,7 +42,7 @@ func (b *block) Print() {
 	for k, v := range b.data {
 		metric, _ := GetMetric(v)
 		str := metric + GetSample(v)
-		fmt.Println(k,str)
+		fmt.Println(k, str)
 	}
 	fmt.Println("----------------------")
 }

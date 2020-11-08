@@ -59,11 +59,12 @@ func NewAggregators() *Aggregators {
 	return aggs
 }
 
-func (collection *Aggregators) updatePrevCache(prevCache *cache, metric string, sample *prompb.Sample) float64 {
+func (collection *Aggregators) updatePrevCache(prevCache *cache, metric string, sample *prompb.Sample, jobName string, index int) float64 {
 	incVal := sample.Value
 	if prevSample, ok := prevCache.data[metric]; ok {
 		curVal, prevVal := sample.Value, prevSample.Value
 		if prevSample.Timestamp > sample.Timestamp {
+			delayedMertricCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
 			return 0
 		}
 		if curVal >= prevVal {
@@ -119,11 +120,11 @@ func (collection *Aggregators) MergeMetric(ts *prompb.TimeSeries, jobName string
 		TsQueue.mergeTimeWindow[index].SetMergeTimeWindow(ts)
 	} else if res == LessCurMergeWindow {
 		// TODO 写metrics记录迟到的数据个数
-		delayedMertricCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
+		//delayedMertricCounter.With(prometheus.Labels{"jobname": jobName, "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
 	}
 	collection.aggregator[jobName].mtx.Lock()
 	cache := collection.aggregator[jobName]
-	incVal := collection.updatePrevCache(cache.prevCache, metric, &ts.Samples[0])
+	incVal := collection.updatePrevCache(cache.prevCache, metric, &ts.Samples[0], jobName, index)
 	cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(cache.prevCache.data)))
 	collection.aggregator[jobName].mtx.Unlock()
 	mergedMt, isUpdate := collection.updatePack(jobName, ts, incVal)

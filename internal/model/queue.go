@@ -68,7 +68,7 @@ func NewTimeSeriesQueue(buffer int, workersNum int) *TimeSeriesQueue {
 	for i := 0; i < workersNum; i++ {
 		tmpTimeSeriesQueue.sendQueue[i] = make(chan *prompb.TimeSeries, Conf.GetQueueCapacity())
 		tmpTimeSeriesQueue.mergeQueue[i] = make(chan *prompb.TimeSeries, Conf.GetQueueCapacity())
-		tmpTimeSeriesQueue.mergeTimeWindow[i].timeWindowSize = Conf.GetWindows()
+		tmpTimeSeriesQueue.mergeTimeWindow[i].timeWindowSize = int64(Conf.windows)
 		tmpTimeSeriesQueue.mergedLists[i].list = make(map[string]map[string]bool)
 	}
 

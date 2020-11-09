@@ -85,6 +85,7 @@ func (collection *Aggregators) updatePack(jobName string, ts *prompb.TimeSeries,
 	pack := collection.aggregator[jobName].pack
 	if _, ok := pack.data[metric]; !ok {
 		pack.data[metric] = noInstTs
+		isUpdate = true
 	} else {
 		if pack.data[metric].Samples[0].Value+incVal >= 0 {
 			pack.data[metric].Samples[0].Value += incVal

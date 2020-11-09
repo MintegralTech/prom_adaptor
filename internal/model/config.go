@@ -30,8 +30,7 @@ type Config struct {
 var Conf *Config
 
 var (
-	//defaultConfigPath = "./conf"
-	defaultConfigPath = "/Users/michael/code/argus/prom_adaptor/conf"
+	defaultConfigPath = "./conf"
 	defaultConfigName = "adaptor"
 	defaultConfigType = "yaml"
 )

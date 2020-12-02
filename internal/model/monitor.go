@@ -43,7 +43,7 @@ var (
             Name:      "send_metrics_num_count",
             Help:      "send metrics num counter",
         },
-        []string{"succ", "queueIndex"},
+        []string{"status", "queueIndex"},
     )
     sendRequestNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{
@@ -52,7 +52,7 @@ var (
             Name:      "send_request_num_count",
             Help:      "send request num counter",
         },
-        []string{"succ", "queueIndex"},
+        []string{"status", "queueIndex"},
     )
     receiveMetricsNumCounter = prometheus.NewCounterVec(
         prometheus.CounterOpts{

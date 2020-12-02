@@ -12,7 +12,10 @@ log:
     reqLogLevel: 4
 
 data:
-    remoteUrl: "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write"
+    remoteUrl:
+    - "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write1"
+    - "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write2"
+    - "http://m3coordinator.m3.svc.cluster.local:7201/api/v1/prom/remote/write3"
 
     whitelist: 
     - "dsp_dsp"

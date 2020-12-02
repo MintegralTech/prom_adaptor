@@ -6,13 +6,13 @@ import (
 )
 
 type Config struct {
-	buffer    int
-	shard     int
-	mode      string
-	remoteUrl string
-	windows   []int
-	jobNames  []string
-	queuesNum int //队列的数量
+	buffer     int
+	shard      int
+	mode       string
+	remoteUrls []string
+	windows    []int
+	jobNames   []string
+	queuesNum  int //队列的数量
 
 	//log
 	logPath     string
@@ -25,6 +25,7 @@ var Conf *Config
 
 var (
 	defaultConfigPath = "./conf"
+	//defaultConfigPath = "/Users/michael/code/argus/prom_adaptor/conf"
 	defaultConfigName = "adaptor"
 	defaultConfigType = "yaml"
 )
@@ -41,7 +42,7 @@ func NewConfig() *Config {
 	config.mode = v.GetString("runtime.mode")
 	config.windows = v.GetIntSlice("data.windows")
 	config.jobNames = v.GetStringSlice("data.whitelist")
-	config.remoteUrl = v.GetString("data.remoteUrl")
+	config.remoteUrls = v.GetStringSlice("data.remoteUrl")
 	config.queuesNum = v.GetInt("runtime.queuesNum")
 
 	//log

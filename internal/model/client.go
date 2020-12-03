@@ -54,7 +54,8 @@ func (c *Client) Write(samples []*prompb.TimeSeries, index int) {
 	var wg sync.WaitGroup
 	wg.Add(len(c.urls))
 	for i, url := range c.urls {
-		go func(urlIndex int, url string) {
+		go func(wg *sync.WaitGroup, urlIndex int, url string) {
+			defer wg.Done()
 			httpReq, err := http.NewRequest("POST", url, bytes.NewReader(req))
 			if err != nil {
 				sendMetricsNumCounter.With(prometheus.Labels{"status": err.Error(), "urlIndex": strconv.Itoa(urlIndex), "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(samplesLen))
@@ -67,21 +68,20 @@ func (c *Client) Write(samples []*prompb.TimeSeries, index int) {
 
 			begin := time.Now().UnixNano()
 			httpResp, err := c.client.Do(httpReq)
-			writeRequestTime.WithLabelValues("queue-"+strconv.Itoa(index), strconv.Itoa(urlIndex), strconv.Itoa(httpResp.StatusCode)).Observe(float64((time.Now().UnixNano() - begin) / 1e6))
 			if err != nil {
 				sendMetricsNumCounter.With(prometheus.Labels{"status": err.Error(), "urlIndex": strconv.Itoa(urlIndex), "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(samplesLen))
 				sendRequestNumCounter.With(prometheus.Labels{"status": err.Error(), "urlIndex": strconv.Itoa(urlIndex), "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
 				return
 			}
+			writeRequestTime.WithLabelValues("queue-"+strconv.Itoa(index), strconv.Itoa(urlIndex), strconv.Itoa(httpResp.StatusCode)).Observe(float64((time.Now().UnixNano() - begin) / 1e6))
 			defer func() {
 				io.Copy(ioutil.Discard, httpResp.Body)
 				httpResp.Body.Close()
-				wg.Done()
 			}()
 			sendMetricsNumCounter.With(prometheus.Labels{"status": httpResp.Status, "urlIndex": strconv.Itoa(urlIndex), "queueIndex": "queue-" + strconv.Itoa(index)}).Add(float64(samplesLen))
 			sendRequestNumCounter.With(prometheus.Labels{"status": httpResp.Status, "urlIndex": strconv.Itoa(urlIndex), "queueIndex": "queue-" + strconv.Itoa(index)}).Inc()
 			return
-		}(i, url)
+		}(&wg, i, url)
 	}
 	wg.Wait()
 }

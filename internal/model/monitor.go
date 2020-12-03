@@ -51,7 +51,7 @@ var (
 			Name:      "send_request_num_count",
 			Help:      "send request num counter",
 		},
-		[]string{"status", "queueIndex"},
+		[]string{"status", "queueIndex", "urlIndex"},
 	)
 	receiveMetricsNumCounter = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
@@ -85,7 +85,7 @@ var (
 		Subsystem: "aggregator",
 		Name:      "write_request_time",
 		Help:      "the request of writing data to influxdb costs time",
-		Buckets:   []float64{15, 50, 100},
+		Buckets:   []float64{15, 50, 100, 200},
 	}, []string{"queueIndex", "urlIndex", "status"})
 )
 
@@ -112,7 +112,9 @@ func GaugeMonitor() {
 		}
 
 		for jobName, agg := range Collection.aggregator {
+			agg.mtx.Lock()
 			cacheDataLengthGauge.With(prometheus.Labels{"jobname": jobName, "type": "prev"}).Set(float64(len(agg.prevCache.data)))
+			agg.mtx.Unlock()
 		}
 	}
 }

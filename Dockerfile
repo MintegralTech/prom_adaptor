@@ -4,7 +4,8 @@ RUN apk add --no-cache git
 COPY go.mod ./
 COPY cmd cmd
 COPY internal internal
-RUN go build cmd/server.go
+ARG LDFlags
+RUN go build -ldflags "$LDFlags" ./cmd/server.go
 
 FROM  alpine:3.9.5
 WORKDIR /prom_adaptor
